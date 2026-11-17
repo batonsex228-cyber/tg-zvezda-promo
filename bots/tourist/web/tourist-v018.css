@@ -1,0 +1,148 @@
+/* TOURIST · GOLD LOUNGE v0.18.0 — refinements and micro-interactions.
+   Fully local, no network font/API dependency and no external runtime.
+   Genuine HTML controls remain interactive; original logo remains untouched. */
+:root{
+  --ui-ease:cubic-bezier(.2,.75,.25,1);
+  --display-face:Bahnschrift,"Arial Narrow","Arial Black","Segoe UI",sans-serif;
+  --body-face:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+}
+html{scroll-padding-top:18px;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--body-face);font-optical-sizing:auto;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overscroll-behavior-y:contain}
+button,select,textarea,input{font-family:var(--body-face)}
+button{touch-action:manipulation}
+button:not(:disabled){cursor:pointer}
+button:disabled{cursor:not-allowed}
+.shell{min-width:0}
+.masthead,.brand,.header-actions{min-width:0}
+.brand-name,.hero h1,.hero h1 em,.page-title,.page-title em,.page-banner .page-title,
+.section-head h2,.panel h2,.ask-feature h2,.event-detail h3,.summary-price b,
+.location-panel strong,.game-art-title,.result-popup-content h2{
+  font-family:var(--display-face);font-stretch:condensed;font-weight:900;
+  font-synthesis:weight;letter-spacing:-.018em;
+}
+.brand-name{letter-spacing:-.025em}
+.brand-sub{letter-spacing:.095em}
+.hero h1{line-height:.95;letter-spacing:-.035em;overflow-wrap:normal;text-wrap:balance}
+.hero h1 em{letter-spacing:inherit}
+.page-title,.page-banner .page-title{line-height:1.02;letter-spacing:-.025em}
+.event-detail h3{letter-spacing:-.012em;line-height:1.14;hyphens:auto;overflow-wrap:anywhere}
+.ask-feature h2{letter-spacing:-.025em}
+.location-panel strong{overflow-wrap:anywhere;line-height:1.2}
+.hero,.page-banner,.game-card,.event-item,.panel,.location-panel,.ask-feature,.result-popup-content{
+  contain:layout style;
+}
+/* Soft entrances with no flash or blocking of interactive elements. */
+.screen.active.entering{animation:touristViewEnter .34s var(--ui-ease) both}
+@keyframes touristViewEnter{from{opacity:.35;transform:translate3d(0,10px,0)}to{opacity:1;transform:translateZ(0)}}
+.hero{animation:touristHeroEnter .55s var(--ui-ease) both}
+@keyframes touristHeroEnter{from{opacity:.8;filter:brightness(.85);transform:translateY(6px)}to{opacity:1;filter:brightness(1);transform:translateY(0)}}
+.game-card{transition:transform .28s var(--ui-ease),filter .28s var(--ui-ease)!important;will-change:auto}
+.game-card:hover{transform:translateY(-4px) scale(1.009)}
+.game-card:active{transform:translateY(0) scale(.975)}
+.hero-cta,.primary,.affirm,.secondary,.chip,.chip-action,.day-chip,.time-chip,.duration-options button,
+.nav-btn,.item-actions button,.small-link,.admin-tab,.popup-close{
+  transition:transform .20s var(--ui-ease),background-color .20s ease,border-color .20s ease,
+  box-shadow .20s ease,filter .20s ease,color .20s ease;
+}
+.hero-cta:active,.primary:active,.chip:active,.chip-action:active,.time-chip:not(:disabled):active,
+.day-chip:active,.duration-options button:active,.item-actions button:not(:disabled):active,
+.nav-btn:active,.admin-tab:active{transform:scale(.967)}
+.hero-cta:hover,.primary:hover,.affirm:hover,.nav-btn:hover{filter:brightness(1.05)}
+.day-chip.selected,.time-chip.selected,.duration-options button.selected,.chip.selected{box-shadow:inset 0 1px 0 #fff9,0 3px 15px #bb80352c}
+.bottom-nav{isolation:isolate}
+.nav-btn{transition:background .22s ease,color .22s ease,transform .2s var(--ui-ease),border-color .22s ease}
+.nav-btn.active{box-shadow:inset 0 1px 0 #efbb7266,0 2px 11px #0005}
+.nav-btn.active .nav-symbol{animation:touristIconIn .26s var(--ui-ease) both}
+@keyframes touristIconIn{from{transform:scale(.85) translateY(2px)}to{transform:scale(1) translateY(0)}}
+.nav-btn .nav-symbol{transform-origin:center}
+.result-popup:not(.hidden) .result-popup-backdrop{animation:touristBackdrop .23s ease-out both}
+.result-popup:not(.hidden) .result-popup-content{animation:touristModalIn .3s var(--ui-ease) both}
+@keyframes touristBackdrop{from{opacity:0}to{opacity:1}}
+@keyframes touristModalIn{from{opacity:.2;transform:translateY(15px) scale(.965)}to{opacity:1;transform:translateY(0) scale(1)}}
+.popup-open{overflow:hidden}
+.result-popup-content{max-height:calc(100dvh - 36px);overflow-y:auto;overscroll-behavior:contain}
+.notice:not(.hidden){animation:touristNoticeIn .23s var(--ui-ease) both}
+@keyframes touristNoticeIn{from{opacity:.4;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+/* Form status should stay readable at narrow widths and browser text zoom. */
+.item-actions,.form-actions,.booking-perks,.two-cols{min-width:0}
+.item-actions button{overflow-wrap:anywhere}
+.event-detail{overflow-wrap:anywhere}
+.chat-msg{overflow-wrap:anywhere;white-space:pre-wrap}
+.summary-price b{font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.booking-summary-info,.booking-summary-info>*{min-width:0}
+.item.event-item{overflow:hidden}
+.nav-btn:focus-visible,.hero-cta:focus-visible,.primary:focus-visible,.game-card:focus-visible,
+.admin-tab:focus-visible,.item-actions button:focus-visible,.small-link:focus-visible,
+.location-panel:focus-visible,.popup-close:focus-visible,.day-chip:focus-visible,
+.time-chip:focus-visible,.duration-options button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid #ffe7ac;outline-offset:2px;
+}
+.skip-link{position:absolute;z-index:100;top:6px;left:10px;transform:translateY(-160%);padding:11px 13px;
+  background:#efcf9c;color:#241407;border-radius:10px;font-weight:700}
+.skip-link:focus{transform:translateY(0)}
+/* Subtle performance-friendly scrollbar styling for horizontal pickers. */
+.chips,.booking-days{scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.chips>*,.booking-days>*{scroll-snap-align:start}
+@media (max-width:520px){
+  .hero h1{font-size:clamp(37px,9.4vw,53px);line-height:.98}
+  .page-title,.page-banner .page-title{font-size:clamp(38px,11vw,52px)}
+  .event-detail h3{font-size:clamp(17px,5vw,21px)}
+  .summary-price b{font-size:clamp(17px,5vw,23px)}
+  .nav-btn{line-height:1.12;font-size:clamp(10px,2.55vw,12px)}
+  .nav-btn .nav-symbol{flex:none}
+}
+@media(max-width:350px){
+  .brand-name{font-size:22px}.brand-sub{font-size:7px}
+  .hero h1{font-size:clamp(34px,10.3vw,41px)}
+  .hero-bottom{letter-spacing:.06em}
+  .hero-content{margin-top:112px}
+  .booking-summary{grid-template-columns:30% minmax(0,1fr);gap:9px}
+  .booking-summary>img{height:102px}
+  .event-detail h3{font-size:17px}
+  .item.event-item{grid-template-columns:31% minmax(0,1fr);gap:8px}
+}
+/* Respects Telegram / OS accessibility settings. */
+@media(prefers-reduced-motion:reduce){
+  .screen.active,.screen.active.entering,.hero,.game-card,.nav-btn.active .nav-symbol,
+  .result-popup:not(.hidden) .result-popup-content,.result-popup:not(.hidden) .result-popup-backdrop,
+  .notice:not(.hidden){animation:none!important}
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+
+
+
+/* v0.18.3: reduced visual noise. Content remains real, accessible HTML. */
+:root { --stengazeta: 'Arial Narrow', 'Segoe UI', sans-serif; }
+/* One genuine logo at the top, no second badge over the photo. */
+.masthead { min-height: 67px; height: auto; padding: 10px 0 11px; border: 0 !important; box-shadow: none !important; }
+.brand { gap: 10px; }
+.brand-photo { width: 53px; height: 53px; flex: 0 0 53px; }
+.brand-name { font-size: clamp(24px, 6vw, 33px); }
+.hero { margin-top: 8px; min-height: clamp(365px, 60vw, 465px); padding: 24px 22px 25px; }
+.hero-content { margin-top: 0 !important; padding-top: 0; width: 100%; }
+.hero h1 { margin: 0 0 15px !important; font-size: clamp(40px, 7.5vw, 64px); }
+.hero p { margin: 0 0 18px; max-width: 385px; }
+.hero h1 em, .page-title em, .ask-feature h2 span { font-family: var(--stengazeta) !important; font-weight: 400 !important; font-style: normal !important; letter-spacing: .004em !important; }
+.hero-cta, .primary, .item-actions .affirm { justify-content: center; text-align: center; gap: 0; }
+.hero-cta { min-width: 170px; }
+.hero-cta img, .primary img { display: none; }
+.section-head { gap: 10px; }
+.section-head h2 { margin-top: 0; }
+.location-panel { padding-top: 18px; }
+.location-panel strong { margin-top: 0; }
+/* Compact, clearly labeled chat submit; no arrow-only button. */
+.chat-form { gap: 8px; }
+.chat-form button { width: auto; min-width: 93px; padding: 0 11px; font-size: 12px; font-weight: 800; white-space: nowrap; }
+@media (max-width: 520px) {
+  .masthead { min-height: 67px; padding: 9px 0 11px; }
+  .brand-photo { height: 50px; width: 50px; flex-basis: 50px; }
+  .hero { min-height: 355px; padding: 22px 20px 23px; background-position: center 55%; }
+  .hero h1 { font-size: clamp(38px, 9.3vw, 51px); line-height: .99; }
+  .hero p { max-width: 325px; }
+}
+@media (max-width: 355px) {
+  .hero { min-height: 355px; padding: 17px 15px 18px; }
+  .hero h1 { font-size: 37px; }
+  .hero p { font-size: 12px; line-height: 1.53; }
+  .chat-form button { min-width: 82px; padding: 0 6px; }
+}

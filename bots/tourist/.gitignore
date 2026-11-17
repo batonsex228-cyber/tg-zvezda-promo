@@ -1,0 +1,19 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/*.sqlite3*
+credentials*.json
+*.log
+
+.tools/
+
+qa/*.png
+backups/
+*.partial
+backups/
+# Offsite credentials and file-based encryption secret
+offsite.env
+secrets/
+*.tbackup

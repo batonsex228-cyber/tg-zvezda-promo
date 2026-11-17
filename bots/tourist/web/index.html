@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0e0f0e">
+  <meta name="description" content="Клуб Турист — мафия, спортивный покер, бильярд, расписание и бронирование">
+  <title>Турист</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css?v=0.18.3-clean-ui">
+  <link rel="stylesheet" href="/assets/showcase.css?v=0.18.3-clean-ui">
+  <link rel="stylesheet" href="/assets/tourist-brand.css?v=0.18.3-clean-ui">
+  <link rel="stylesheet" href="/assets/tourist-v017.css?v=0.18.3-clean-ui">
+  <link rel="stylesheet" href="/assets/tourist-v018.css?v=0.18.3-clean-ui">
+  <script src="/assets/app.js?v=0.18.3-clean-ui" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+  <div class="shell" id="tourist-app">
+    <header class="masthead">
+      <div class="brand"><img class="brand-photo" src="/assets/tourist_logo_original.png" alt="Оригинальный логотип бара Турист"><div><div class="brand-name">ТУРИСТ</div></div></div>
+    </header>
+    <main id="main-content">
+      <section class="hero" id="home-hero" aria-label="Добро пожаловать в Турист">
+        <div class="hero-content">
+          <h1>СВОИ ЛЮДИ.<br><em>СВОИ ИСТОРИИ.</em></h1>
+          <p>Караоке, барная атмосфера, вечерние игры и уютные встречи. Выберите свой вечер — остальное мы организуем.</p>
+          <button type="button" class="hero-cta" data-screen="schedule">Выбрать игру</button>
+        </div>
+      </section>
+      <div id="notice" class="notice hidden" role="status"></div><div id="result-popup" class="result-popup hidden" role="dialog" aria-modal="true" aria-labelledby="result-popup-title"><div class="result-popup-backdrop" data-popup-close="1"></div><div class="result-popup-content"><button class="popup-close" type="button" data-popup-close="1" aria-label="Закрыть"><img src="/assets/visual/v017/icons/nav/ui_close.svg" alt=""></button><img id="result-popup-image" src="/assets/visual/v017/illustrations/01_booking_success.png" alt=""><h2 id="result-popup-title">Готово!</h2><p id="result-popup-text"></p><button class="primary" type="button" data-popup-close="1">Продолжить</button></div></div>
+      <section id="screen-home" class="screen active">
+        <div class="section-head"><div><h2>Во что сыграем?</h2></div></div>
+        <div class="game-grid" aria-label="Развлечения клуба">
+          <button type="button" class="game-card karaoke" data-screen="support" data-prefill="Здравствуйте! Хочу забронировать караоке. Подскажите свободное время." aria-label="Караоке — узнать про бронирование">
+            <img loading="lazy" src="/assets/visual/v017/cards/karaoke.png" alt="" aria-hidden="true"><span class="visually-hidden">Караоке — узнать свободное время</span>
+          </button>
+          <button type="button" class="game-card mafia" data-screen="schedule" data-filter="mafia" aria-label="Мафия — посмотреть игры">
+            <img loading="lazy" src="/assets/visual/v017/cards/mafia.png" alt="" aria-hidden="true"><span class="visually-hidden">Мафия — записаться</span>
+          </button>
+          <button type="button" class="game-card poker" data-screen="schedule" data-filter="poker" aria-label="Покер — посмотреть турнир">
+            <img loading="lazy" src="/assets/visual/v017/cards/poker.png" alt="" aria-hidden="true"><span class="game-art-title">ПОКЕР</span><span class="visually-hidden">Покер — записаться на турнир</span>
+          </button>
+          <button type="button" class="game-card billiard" data-screen="billiard" aria-label="Бильярд — забронировать стол">
+            <img loading="lazy" src="/assets/visual/v017/cards/billiards.png" alt="" aria-hidden="true"><span class="visually-hidden">Бильярд — забронировать стол</span>
+          </button>
+        </div>
+
+        <div class="ask-feature"><img class="ask-illustration" src="/assets/visual/v017/icons/topics/05_bar.png" alt="" aria-hidden="true">
+          <div class="ask-feature-label">НЕ ЗНАЕТЕ, С ЧЕГО НАЧАТЬ?</div>
+          <h2>СПРОСИТЕ <span>КАК УДОБНО</span></h2>
+          <p>«А вы сегодня до скольких?», «Сколько стоит мафия?», «Можно просто посидеть?» — отвечаем по делу, без поиска нужной кнопки.</p>
+          <button class="primary" data-screen="chat">Задать вопрос боту</button>
+        </div>
+        <a class="location-panel" href="https://yandex.ru/maps/org/turist/135729945732/" target="_blank" rel="noopener noreferrer"><strong>УЛ. КУКУНИНА, 9Б, КОРП. 1</strong><span class="location-foot">Открыть маршрут в Яндекс Картах</span></a>
+        <div class="section-head events-head"><div><h2>На этой неделе</h2></div><button class="small-link" data-screen="schedule">Все встречи</button></div>
+        <div id="home-events" class="stack"></div>
+      </section>
+      <section id="screen-schedule" class="screen">
+        <div class="page-banner schedule-banner"><h1 class="page-title">АФИША</h1><p class="page-subtitle">Ближайшие события и игровые вечера.</p></div><p class="page-hint">Выбирайте игру, отправляйте заявку — администратор подтвердит запись.</p>
+        <div class="chips"><button class="chip selected" data-kind="all">Все</button><button type="button" class="chip-action" data-screen="support" data-prefill="Здравствуйте! Хочу записаться на караоке."><img src="/assets/visual/v017/icons/topics/01_karaoke.png" alt="">Караоке</button><button class="chip" data-kind="mafia"><img src="/assets/visual/v017/icons/topics/02_mafia.png" alt="">Мафия</button><button class="chip" data-kind="poker"><img src="/assets/visual/v017/icons/topics/03_poker.png" alt="">Покер</button><button type="button" class="chip-action" data-screen="billiard"><img src="/assets/visual/v017/icons/topics/04_billiards.png" alt="">Бильярд</button></div>
+        <div id="event-list" class="stack"></div>
+      </section>
+      <section id="screen-billiard" class="screen">
+        <div class="page-banner billiard-banner"><h1 class="page-title">БИЛЬЯРД</h1><p class="page-subtitle">Выберите день, время и длительность игры.</p></div>
+        <div class="panel">
+          <form id="billiard-form">
+            <details class="exact-date"><summary>Выбрать дату и время вручную</summary><label>Дата и время<input id="bill-start" type="datetime-local" required></label></details>
+            <div class="booking-widget"><div class="slot-head"><strong>Выберите удобный день</strong><span>7 дней вперёд</span></div><div id="booking-days" class="booking-days" aria-label="Быстрый выбор даты"></div><div class="slot-head"><strong>Популярное время</strong><span>Выберите свободный интервал</span></div><div id="booking-times" class="booking-times" aria-label="Быстрый выбор времени"></div><p class="subtle-info">Свободные интервалы обновляются при выборе даты. Бронирование подтверждает администратор.</p></div>
+            <div class="duration-head">Длительность игры</div><div class="duration-options" role="group" aria-label="Длительность брони"><button type="button" data-duration="1">1 час</button><button type="button" data-duration="2" class="selected">2 часа</button><button type="button" data-duration="3">3 часа</button><button type="button" data-duration="4">4 часа</button></div><div class="two-cols"><label class="duration-native">Длительность<select id="bill-hours" aria-label="Длительность в часах"><option value="1">1 час</option><option value="2" selected>2 часа</option><option value="3">3 часа</option><option value="4">4 часа</option></select></label>
+            <label>Количество гостей<input id="bill-guests" type="number" min="1" max="30" value="2" required></label></div>
+            <div class="subtle-info">Время клуба: <span class="club-timezone">Europe/Moscow</span>. Бронирование доступно максимум за 7 дней. Часы работы клуба уточняются.</div><div class="busy-box" id="busy-box" aria-live="polite"><strong>Занятые интервалы</strong><p id="busy-list">Выберите дату, чтобы проверить время.</p></div>
+            <div class="booking-summary"><img src="/assets/visual/v017/objects/billiards.png" alt="" aria-hidden="true"><div class="booking-summary-info"><span class="summary-label">ВАША БРОНЬ</span><strong id="booking-summary-date">Выберите день</strong><span id="booking-summary-time">Время и длительность</span><span class="summary-price">Итого: <b id="booking-summary-total">1 800 ₽</b></span></div></div>
+            <div class="booking-perks"><span><img src="/assets/visual/v017/icons/topics/04_billiards.png" alt=""> Инвентарь включён</span><span><img src="/assets/visual/v017/icons/topics/09_guests.png" alt=""> Для компании</span><button type="button" data-show-booking-info="1">Что включено?</button></div>
+            <button class="primary" type="submit">Забронировать стол</button>
+          </form>
+        </div>
+      </section>
+      <section id="screen-profile" class="screen">
+        <div class="visual-mini-art profile-art" aria-hidden="true"><img src="/assets/visual/v017/illustrations/05_profile_required.png" alt=""></div><div class="page-eyebrow">НАЧНИТЕ СО СВОЕГО НИКА</div><h1 class="page-title">Личный <em>кабинет.</em></h1><p class="page-subtitle">Один игровой ник для мафии и покера. Его изменения не затрагивают историю игр.</p>
+        <div class="panel"><form id="profile-form">
+          <label>Имя<input id="full-name" placeholder="Как к Вам обращаться" autocomplete="name" minlength="2" maxlength="100" required></label>
+          <label>Телефон<input id="phone" placeholder="+79991234567" autocomplete="tel" inputmode="tel" required></label>
+          <label>Игровой ник<input id="nickname" placeholder="Например, Странник" minlength="2" maxlength="24" required></label>
+          <button class="primary" type="submit">Сохранить профиль</button>
+        </form></div>
+        <div class="section-head"><h2>Мои заявки</h2></div>
+        <div id="my-requests" class="stack"></div>
+      </section>
+
+      <section id="screen-chat" class="screen">
+        <div class="visual-mini-art questions-art" aria-hidden="true"><img src="/assets/visual/v017/icons/topics/05_bar.png" alt=""></div><div class="page-eyebrow">ПОМОЩНИК БАРА</div><h1 class="page-title">СПРОСИТЕ <em>ПО-СВОЕМУ.</em></h1>
+        <p class="page-subtitle">Обычные вопросы, обычные ответы. Можно продолжить предыдущую тему — бот помнит контекст беседы.</p>
+        <div class="chat-card"><div class="chat-top"><img src="/assets/tourist_logo_original.png" alt=""><div><strong>ТУРИСТ ПОМОЩНИК</strong><small>Адрес, часы, игры, бронь</small></div></div>
+          <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"><div class="chat-msg bot">Добро пожаловать! Спрашивайте как удобно: где мы находимся, когда играем, что по ценам и бронированию.</div></div>
+          <div class="chat-prompts"><button type="button" data-ask-example="Какой у вас адрес?">Адрес</button><button type="button" data-ask-example="До скольких работаете?">График</button><button type="button" data-ask-example="Когда мафия?">Мафия</button><button type="button" data-ask-example="Сколько стоит бильярд?">Цены</button></div>
+          <form id="chat-form" class="chat-form"><input id="chat-question" type="text" maxlength="1500" autocomplete="off" placeholder="Напишите вопрос своими словами…" aria-label="Ваш вопрос" required><button type="submit" aria-label="Отправить вопрос">Отправить</button></form>
+        </div>
+        <p class="chat-footnote">Напишите вопрос своими словами. По бронированиям и личным заявкам ориентируйтесь на актуальный статус в личном кабинете.</p>
+        <button class="secondary chat-admin-link" type="button" data-screen="support">Нужен сотрудник? Вызвать администратора</button>
+      </section>
+      <section id="screen-support" class="screen">
+        <div class="visual-mini-art support-art" aria-hidden="true"><img src="/assets/visual/v017/illustrations/03_call_admin.png" alt=""></div><div class="page-eyebrow">МЫ НА СВЯЗИ</div><h1 class="page-title">Вызвать <em>администратора.</em></h1>
+        <p class="page-subtitle">Есть вопрос про игру, бронь или условия посещения? Напишите своими словами — сотрудник ответит прямо в Telegram.</p>
+        <div class="concierge-card"><span class="concierge-icon">✳</span><div><strong>Живой администратор</strong><p>Сообщение попадёт сотруднику. Скорость ответа зависит от его доступности.</p></div><span class="concierge-live">ОБРАЩЕНИЯ</span></div>
+        <div class="panel"><form id="support-form">
+          <label>Ваш вопрос<textarea id="support-message" rows="5" maxlength="1500" minlength="5" placeholder="Здравствуйте! Подскажите, можно ли забронировать стол на субботу вечером?" required></textarea></label>
+          <button class="primary" type="submit">Отправить вопрос</button>
+          <div class="subtle-info">Ответ появится в этом разделе и придёт сообщением в Telegram.</div>
+        </form></div>
+        <div class="section-head"><h2>Мои обращения</h2><button id="refresh-support" class="small-link" type="button">Обновить ↻</button></div><div id="support-mine" class="stack"></div>
+      </section>
+      <section id="screen-admin" class="screen">
+        <div class="page-eyebrow">BACK OFFICE</div><h1 class="page-title">Панель <em>клуба.</em></h1><p class="page-subtitle">Модерация заявок и создание мероприятий. Все решения сохраняются в журнале.</p>
+        <div class="admin-tabs" role="tablist" aria-label="Разделы управления">
+          <button class="admin-tab selected" data-admin-tab="overview" role="tab" aria-selected="true">Обзор</button>
+          <button class="admin-tab" data-admin-tab="pending" role="tab" aria-selected="false">Заявки <span id="pending-counter" class="counter">0</span></button>
+          <button class="admin-tab" data-admin-tab="support" role="tab" aria-selected="false">Обращения</button>
+          <button class="admin-tab" data-admin-tab="events" role="tab" aria-selected="false">События</button>
+          <button class="admin-tab" data-admin-tab="users" role="tab" aria-selected="false">Гости</button>
+          <button class="admin-tab" data-admin-tab="audit" role="tab" aria-selected="false" id="audit-tab">История</button>
+        </div>
+        <div class="admin-panel" data-admin-panel="overview">
+          <div class="section-head"><h2>Сводка клуба</h2><button class="small-link" id="refresh-overview">Обновить ↻</button></div>
+          <div class="metrics-grid" id="admin-metrics" aria-live="polite"><div class="empty">Загружаем сводку…</div></div>
+          <div class="panel" role="status" aria-live="polite"><h2>Резервные копии</h2><p class="subtle-info" id="backup-info">Проверяем последнее сохранение данных…</p></div>
+          <div class="panel hidden" id="operations-box"><h2>Состояние системы</h2><p class="subtle-info" id="operations-info" aria-live="polite">Проверяем работу системы…</p><div class="item-actions"><button class="secondary" id="retry-notifications" data-retry-notifications="1">Повторить временно неотправленные уведомления</button></div><p class="subtle-info">Только ошибки связи. Повторная доставка иногда может создать дубликат сообщения.</p></div>
+          <div class="quick-actions"><button class="secondary" data-admin-jump="pending">Рассмотреть заявки</button><button class="secondary" data-admin-jump="events">Открыть расписание</button></div>
+          <div class="panel"><h2>Рабочий порядок</h2><p class="subtle-info">Заявки резервируют места сразу. Для окончательного подтверждения откройте вкладку «Заявки». Брони и решения сохраняются в базе, а Telegram-уведомления отправляются отдельно.</p></div>
+        </div>
+        <div class="admin-panel hidden" data-admin-panel="pending">
+          <div class="section-head"><h2>Заявки на рассмотрении</h2><button class="small-link" id="refresh-admin">Обновить ↻</button></div>
+          <div id="admin-pending" class="stack"></div>
+        </div>
+        <div class="admin-panel hidden" data-admin-panel="support">
+          <div class="section-head"><h2>Вопросы гостей</h2><button class="small-link" type="button" id="refresh-support-admin">Обновить ↻</button></div>
+          <div id="admin-support" class="stack"></div>
+        </div>
+        <div class="admin-panel hidden" data-admin-panel="events">
+          <div class="section-head"><h2>Календарь событий</h2><button class="small-link" id="refresh-events">Обновить ↻</button></div>
+          <div id="admin-events" class="stack"></div>
+        <div id="admin-create" class="panel hidden"><h2>Новое мероприятие</h2>
+          <form id="create-event-form">
+            <label>Направление<select id="create-kind"><option value="mafia">Мафия</option><option value="poker">Покер</option></select></label>
+            <label>Название<input id="create-title" placeholder="Название мероприятия" required></label>
+            <label>Дата и время (часовой пояс клуба)<input id="create-start" type="datetime-local" required></label>
+            <div class="two-cols"><label>Лимит<input id="create-cap" type="number" min="1" max="100" value="10"></label>
+              <label>Минимум игроков<input id="create-min" type="number" min="1" max="100" value="1"></label></div>
+            <label>Формат<select id="create-format"><option value="classic">Классическая (четверг)</option><option value="city">Городская (воскресенье)</option></select></label>
+            <div class="two-cols"><label>Стек (покер)<input id="create-stack" placeholder="10 000"></label><label>Блайнды (покер)<input id="create-blinds" placeholder="100/200"></label></div>
+            <button type="submit" class="primary">Добавить событие</button>
+          </form>
+        </div>
+
+          <div id="admin-edit" class="panel hidden"><h2>Редактирование мероприятия</h2>
+            <form id="edit-event-form">
+              <input type="hidden" id="edit-id">
+              <label>Направление<select id="edit-kind"><option value="mafia">Мафия</option><option value="poker">Покер</option></select></label>
+              <label>Название<input id="edit-title" required maxlength="120"></label>
+              <label>Дата и время (часовой пояс клуба)<input id="edit-start" type="datetime-local" required></label>
+              <div class="two-cols"><label>Лимит<input id="edit-cap" type="number" min="1" max="100" required></label>
+                <label>Минимум игроков<input id="edit-min" type="number" min="1" max="100" required></label></div>
+              <label>Формат мафии<select id="edit-format"><option value="classic">Классическая</option><option value="city">Городская</option></select></label>
+              <div class="two-cols"><label>Стек<input id="edit-stack"></label><label>Блайнды<input id="edit-blinds"></label></div>
+              <label>Статус<select id="edit-status"><option value="open">Идёт запись</option><option value="closed">Запись закрыта</option><option value="cancelled">Отменить мероприятие</option></select></label>
+              <div class="subtle-info">При отмене все активные заявки будут отменены, а гостям поставятся уведомления в очередь.</div>
+              <div class="form-actions"><button type="submit" class="primary">Сохранить изменения</button><button type="button" id="edit-close" class="secondary">Закрыть</button></div>
+            </form>
+          </div>
+        </div>
+        <div class="admin-panel hidden" data-admin-panel="users">
+          <div class="section-head"><h2>Участники клуба</h2></div>
+          <label class="search-label">Поиск по нику, имени, телефону или Telegram ID<input id="user-query" type="search" placeholder="Найти гостя…" autocomplete="off"></label>
+          <p class="subtle-info">Назначение ролей доступно владельцу и старшему администратору. Гость должен предварительно открыть бота.</p>
+          <div id="admin-users" class="stack"></div>
+        </div>
+        <div class="admin-panel hidden" data-admin-panel="audit">
+          <div class="section-head"><h2>История изменений</h2></div><div id="admin-audit" class="stack"></div>
+        </div>
+        <div class="admin-footnote"><div id="sync-info" class="subtle-info"></div><div id="notify-info" class="subtle-info"></div></div>
+      </section>
+    </main>
+    <nav class="bottom-nav" aria-label="Основная навигация">
+      <button type="button" data-screen="home" class="nav-btn active" aria-current="page"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_home.svg" alt="" aria-hidden="true"></span>Главная</button>
+      <button type="button" data-screen="schedule" class="nav-btn"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_events.svg" alt="" aria-hidden="true"></span>Афиша</button>
+      <button type="button" data-screen="billiard" class="nav-btn"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_billiards.svg" alt="" aria-hidden="true"></span>Бильярд</button>
+      <button type="button" data-screen="chat" class="nav-btn"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_questions.svg" alt="" aria-hidden="true"></span>Вопросы</button>
+      <button type="button" data-screen="support" class="nav-btn"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_contact.svg" alt="" aria-hidden="true"></span>Связь</button>
+      <button type="button" data-screen="profile" class="nav-btn"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_profile.svg" alt="" aria-hidden="true"></span>Профиль</button>
+      <button data-screen="admin" id="admin-nav" class="nav-btn hidden"><span class="nav-symbol"><img src="/assets/visual/v017/icons/nav/nav_profile.svg" alt="" aria-hidden="true"></span>Панель</button>
+    </nav>
+  </div>
+</body>
+</html>

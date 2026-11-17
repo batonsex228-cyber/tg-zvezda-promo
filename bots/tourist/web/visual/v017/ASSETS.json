@@ -1,0 +1,397 @@
+{
+  "version": "0.17.0",
+  "logo_original_sha256": "dc07705cf3f9dd5f94de9b1479f875136addab4fe2d3dcbb847cdb8fa07f9930",
+  "assets": {
+    "hero/lounge.png": {
+      "source": "01_ready_to_reuse/home_hero_bar_interior.png",
+      "size": [
+        820,
+        1457
+      ],
+      "bytes": 1283867
+    },
+    "cards/mafia.png": {
+      "source": "01_ready_to_reuse/category_mafia.png",
+      "size": [
+        570,
+        724
+      ],
+      "bytes": 630798
+    },
+    "cards/karaoke.png": {
+      "source": "01_ready_to_reuse/category_karaoke.png",
+      "size": [
+        570,
+        733
+      ],
+      "bytes": 583760
+    },
+    "cards/billiards.png": {
+      "source": "01_ready_to_reuse/category_billiards.png",
+      "size": [
+        570,
+        709
+      ],
+      "bytes": 551844
+    },
+    "cards/poker.png": {
+      "source": "07_batch_03_images/01_poker_card.png",
+      "size": [
+        570,
+        853
+      ],
+      "bytes": 672603
+    },
+    "cards/bar.png": {
+      "source": "07_batch_03_images/02_bar_card.png",
+      "size": [
+        570,
+        777
+      ],
+      "bytes": 642896
+    },
+    "banners/karaoke.png": {
+      "source": "07_batch_03_images/03_karaoke_banner.png",
+      "size": [
+        1120,
+        482
+      ],
+      "bytes": 777221
+    },
+    "banners/mafia.png": {
+      "source": "07_batch_03_images/04_mafia_banner.png",
+      "size": [
+        1120,
+        580
+      ],
+      "bytes": 964818
+    },
+    "banners/poker.png": {
+      "source": "07_batch_03_images/05_poker_banner.png",
+      "size": [
+        1120,
+        505
+      ],
+      "bytes": 779343
+    },
+    "banners/billiards.png": {
+      "source": "07_batch_03_images/06_billiards_banner.png",
+      "size": [
+        1120,
+        531
+      ],
+      "bytes": 835275
+    },
+    "objects/microphone.png": {
+      "source": "07_batch_03_images/07_microphone_still_life.png",
+      "size": [
+        570,
+        1158
+      ],
+      "bytes": 1019383
+    },
+    "objects/poker.png": {
+      "source": "07_batch_03_images/08_poker_still_life.png",
+      "size": [
+        570,
+        565
+      ],
+      "bytes": 444305
+    },
+    "objects/billiards.png": {
+      "source": "07_batch_03_images/09_billiards_still_life.png",
+      "size": [
+        570,
+        522
+      ],
+      "bytes": 318635
+    },
+    "objects/bar.png": {
+      "source": "07_batch_03_images/10_bar_still_life.png",
+      "size": [
+        570,
+        543
+      ],
+      "bytes": 475403
+    },
+    "icons/nav/nav_billiards.svg": {
+      "source": "05_batch_01_icons/svg/nav_billiards.svg"
+    },
+    "icons/nav/nav_contact.svg": {
+      "source": "05_batch_01_icons/svg/nav_contact.svg"
+    },
+    "icons/nav/nav_events.svg": {
+      "source": "05_batch_01_icons/svg/nav_events.svg"
+    },
+    "icons/nav/nav_home.svg": {
+      "source": "05_batch_01_icons/svg/nav_home.svg"
+    },
+    "icons/nav/nav_profile.svg": {
+      "source": "05_batch_01_icons/svg/nav_profile.svg"
+    },
+    "icons/nav/nav_questions.svg": {
+      "source": "05_batch_01_icons/svg/nav_questions.svg"
+    },
+    "icons/nav/ui_arrow.svg": {
+      "source": "05_batch_01_icons/svg/ui_arrow.svg"
+    },
+    "icons/nav/ui_back.svg": {
+      "source": "05_batch_01_icons/svg/ui_back.svg"
+    },
+    "icons/nav/ui_check.svg": {
+      "source": "05_batch_01_icons/svg/ui_check.svg"
+    },
+    "icons/nav/ui_close.svg": {
+      "source": "05_batch_01_icons/svg/ui_close.svg"
+    },
+    "icons/nav/nav_billiards.png": {
+      "source": "05_batch_01_icons/png_512/nav_billiards.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 22179
+    },
+    "icons/nav/nav_contact.png": {
+      "source": "05_batch_01_icons/png_512/nav_contact.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 10510
+    },
+    "icons/nav/nav_events.png": {
+      "source": "05_batch_01_icons/png_512/nav_events.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 6587
+    },
+    "icons/nav/nav_home.png": {
+      "source": "05_batch_01_icons/png_512/nav_home.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 9431
+    },
+    "icons/nav/nav_profile.png": {
+      "source": "05_batch_01_icons/png_512/nav_profile.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 12400
+    },
+    "icons/nav/nav_questions.png": {
+      "source": "05_batch_01_icons/png_512/nav_questions.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 11638
+    },
+    "icons/nav/ui_arrow.png": {
+      "source": "05_batch_01_icons/png_512/ui_arrow.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 2370
+    },
+    "icons/nav/ui_back.png": {
+      "source": "05_batch_01_icons/png_512/ui_back.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 2285
+    },
+    "icons/nav/ui_check.png": {
+      "source": "05_batch_01_icons/png_512/ui_check.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 5414
+    },
+    "icons/nav/ui_close.png": {
+      "source": "05_batch_01_icons/png_512/ui_close.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 9707
+    },
+    "icons/topics/01_karaoke.png": {
+      "source": "06_batch_02_icons/01_karaoke.png",
+      "size": [
+        268,
+        423
+      ],
+      "bytes": 98641
+    },
+    "icons/topics/02_mafia.png": {
+      "source": "06_batch_02_icons/02_mafia.png",
+      "size": [
+        268,
+        273
+      ],
+      "bytes": 82117
+    },
+    "icons/topics/03_poker.png": {
+      "source": "06_batch_02_icons/03_poker.png",
+      "size": [
+        268,
+        324
+      ],
+      "bytes": 110830
+    },
+    "icons/topics/04_billiards.png": {
+      "source": "06_batch_02_icons/04_billiards.png",
+      "size": [
+        268,
+        283
+      ],
+      "bytes": 71694
+    },
+    "icons/topics/05_bar.png": {
+      "source": "06_batch_02_icons/05_bar.png",
+      "size": [
+        268,
+        227
+      ],
+      "bytes": 55689
+    },
+    "icons/topics/06_calendar.png": {
+      "source": "06_batch_02_icons/06_calendar.png",
+      "size": [
+        268,
+        282
+      ],
+      "bytes": 70475
+    },
+    "icons/topics/07_clock.png": {
+      "source": "06_batch_02_icons/07_clock.png",
+      "size": [
+        268,
+        273
+      ],
+      "bytes": 61812
+    },
+    "icons/topics/08_location.png": {
+      "source": "06_batch_02_icons/08_location.png",
+      "size": [
+        268,
+        342
+      ],
+      "bytes": 64730
+    },
+    "icons/topics/09_guests.png": {
+      "source": "06_batch_02_icons/09_guests.png",
+      "size": [
+        267,
+        176
+      ],
+      "bytes": 48127
+    },
+    "icons/topics/10_phone.png": {
+      "source": "06_batch_02_icons/10_phone.png",
+      "size": [
+        268,
+        260
+      ],
+      "bytes": 44028
+    },
+    "illustrations/01_booking_success.png": {
+      "source": "08_batch_04_illustrations/png/01_booking_success.png",
+      "size": [
+        380,
+        331
+      ],
+      "bytes": 180027
+    },
+    "illustrations/02_confirm_action.png": {
+      "source": "08_batch_04_illustrations/png/02_confirm_action.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 137976
+    },
+    "illustrations/03_call_admin.png": {
+      "source": "08_batch_04_illustrations/png/03_call_admin.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 119521
+    },
+    "illustrations/04_service_unavailable.png": {
+      "source": "08_batch_04_illustrations/png/04_service_unavailable.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 115179
+    },
+    "illustrations/05_profile_required.png": {
+      "source": "08_batch_04_illustrations/png/05_profile_required.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 113055
+    },
+    "illustrations/06_no_bookings.png": {
+      "source": "08_batch_04_illustrations/png/06_no_bookings.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 99756
+    },
+    "illustrations/07_no_events.png": {
+      "source": "08_batch_04_illustrations/png/07_no_events.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 120206
+    },
+    "illustrations/08_no_billiards.png": {
+      "source": "08_batch_04_illustrations/png/08_no_billiards.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 121762
+    },
+    "illustrations/09_no_messages.png": {
+      "source": "08_batch_04_illustrations/png/09_no_messages.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 107804
+    },
+    "illustrations/10_loading.png": {
+      "source": "08_batch_04_illustrations/png/10_loading.png",
+      "size": [
+        380,
+        416
+      ],
+      "bytes": 112941
+    },
+    "events/mafia.png": {
+      "source": "derived by cropping the supplied mafia visual; no logo edit",
+      "size": [
+        570,
+        521
+      ],
+      "bytes": 503149
+    }
+  },
+  "note": "Original logo stays untouched. Banners with render-only logo approximations are retained for future reference but not rendered as the brand logo."
+}

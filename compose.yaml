@@ -1,19 +1,95 @@
-# For deployment on a Linux Docker host. Set BOT_IMAGE and TELEGRAM_BOT_TOKEN in .env.
-# This bot uses Telegram long polling and does not need published ports.
+name: tg-demo-duo
 services:
-  zvezdochka-telegram:
-    image: ${BOT_IMAGE:?Set BOT_IMAGE in .env (ghcr.io/OWNER/zvezdochka-telegram-bot:latest)}
+  zvezdochka:
+    image: ${ZVEZDOCHKA_IMAGE:?Set ZVEZDOCHKA_IMAGE in .env}
     restart: unless-stopped
     init: true
-    env_file:
-      - .env
+    environment:
+      TELEGRAM_BOT_TOKEN: ${ZVEZDOCHKA_BOT_TOKEN:?Enter ZVEZDOCHKA_BOT_TOKEN in .env}
+      TELEGRAM_MANAGER_USER_ID: ${ZVEZDOCHKA_MANAGER_ID:-0}
+      TELEGRAM_API_BASE_URL: ${TELEGRAM_API_BASE_URL:-https://api.telegram.org}
+      TELEGRAM_RELAY_KEY: ${TELEGRAM_RELAY_KEY:-}
+      BOOKINGS_ENABLED: ${ZVEZDOCHKA_BOOKINGS_ENABLED:-false}
+      BOOKING_API_URL: ${ZVEZDOCHKA_BOOKING_API_URL:-}
+      BOOKING_API_SECRET: ${ZVEZDOCHKA_BOOKING_API_SECRET:-}
+      SHIFT_BOOKINGS_ENABLED: ${ZVEZDOCHKA_SHIFT_BOOKINGS_ENABLED:-true}
+      SHIFT_EXPORT_PII_TO_GOOGLE: ${ZVEZDOCHKA_SHIFT_EXPORT_PII_TO_GOOGLE:-false}
+      SHIFT_PRIVACY_POLICY_URL: https://zvezdaglazov.ru/pages/parents.html
+      SHIFT_ACTIVE_NUMBERS: ${ZVEZDOCHKA_SHIFT_ACTIVE_NUMBERS:-1,2,3,4}
+      SMART_HANDOFF_ENABLED: 'true'
+      KNOWLEDGE_LOOP_ENABLED: 'true'
+      AUTO_REFRESH_KB: ${ZVEZDOCHKA_AUTO_REFRESH_KB:-false}
+      OPENAI_API_KEY: ${ZVEZDOCHKA_OPENAI_API_KEY:-}
     volumes:
-      - bot_runtime:/app/runtime
+      - zvezdochka_runtime:/app/runtime
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
     stop_grace_period: 45s
 
+  tourist:
+    image: ${TOURIST_IMAGE:?Set TOURIST_IMAGE in .env}
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,size=64m
+    environment:
+      TOURIST_CONTAINER: '1'
+      BOT_TOKEN: ${TOURIST_BOT_TOKEN:?Enter TOURIST_BOT_TOKEN in .env}
+      OWNER_TELEGRAM_ID: ${TOURIST_OWNER_ID:?Enter TOURIST_OWNER_ID in .env}
+      DOMAIN: ${TOURIST_DOMAIN:?Enter TOURIST_DOMAIN in .env}
+      WEBAPP_URL: https://${TOURIST_DOMAIN:?Enter TOURIST_DOMAIN in .env}
+      DEMO_MODE: 'false'
+      SHOWCASE_MODE: ${TOURIST_SHOWCASE_MODE:-true}
+      DATABASE_PATH: /app/runtime/tourist.sqlite3
+      BACKUP_INTERVAL_HOURS: ${TOURIST_BACKUP_INTERVAL_HOURS:-24}
+      BACKUP_KEEP_DAYS: ${TOURIST_BACKUP_KEEP_DAYS:-14}
+      REMINDER_HOURS_BEFORE: ${TOURIST_REMINDER_HOURS_BEFORE:-0}
+      GOOGLE_SHEET_ID: ${TOURIST_GOOGLE_SHEET_ID:-}
+      GOOGLE_CREDENTIALS_FILE: ${TOURIST_GOOGLE_CREDENTIALS_FILE:-}
+      TELEGRAM_API_BASE_URL: ${TELEGRAM_API_BASE_URL:-https://api.telegram.org}
+      TELEGRAM_RELAY_KEY: ${TELEGRAM_RELAY_KEY:-}
+      AI_MODE: ${TOURIST_AI_MODE:-off}
+    volumes:
+      - tourist_runtime:/app/runtime
+      - tourist_backups:/app/backups
+    expose:
+      - '8000'
+    healthcheck:
+      test: ["CMD", "python", "-m", "scripts.container_healthcheck"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      tourist:
+        condition: service_healthy
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    environment:
+      DOMAIN: ${TOURIST_DOMAIN:?Enter TOURIST_DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    security_opt:
+      - no-new-privileges:true
+
 volumes:
-  bot_runtime:
+  zvezdochka_runtime:
+  tourist_runtime:
+  tourist_backups:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,69 @@
+/* TURIST / AUTHENTIC KARAOКЕ КАФЕ БАР / v0.16
+   Exact user-supplied logo bytes are served unchanged as tourist_logo_original.png.
+   No new logo, vectorization, manipulation or stock artwork. */
+:root {--bg:#0d0e0d;--surface:#1b1d1b;--panel:#242625;--border:rgba(241,239,230,.18);
+ --text:#f4f0e8;--muted:#aba9a2;--accent:#f2ece1;--accent-ink:#101110;
+ --radius:8px;--shadow:0 24px 55px rgba(0,0,0,.34);--font:'Arial','Segoe UI',sans-serif}
+html{background:#0d0e0d}
+body{background:linear-gradient(170deg,#151716 0%,#0e0f0e 42%,#101211 100%);color:var(--text)}
+.shell{max-width:850px}.masthead{height:83px;background:rgba(13,14,13,.88);border-bottom:1px solid rgba(255,255,255,.17);padding:6px 0}
+.brand{gap:13px}.brand-photo{width:58px;height:58px;display:block;object-fit:contain;flex:0 0 58px}
+.brand-name{font-family:Impact,'Arial Black',sans-serif;font-size:25px;letter-spacing:.035em;line-height:1.02;color:#fff}
+.brand-sub{font-size:9px;letter-spacing:.1em;color:#bebbb1;margin-top:6px}
+.live-badge{color:#e8e1d3!important;background:#252724;border:1px solid #5b5c56!important}
+.avatar{background:#2c2e2b;border-radius:50%;color:#f1ebde;border:1px solid #5a5c56}
+.hero{border-radius:8px;margin-top:21px;min-height:410px;box-shadow:0 22px 70px rgba(0,0,0,.33);border:1px solid #57574f;
+ background:radial-gradient(ellipse at 100% 68%,rgba(255,255,255,.07),transparent 58%),linear-gradient(128deg,#373937 0%,#202321 38%,#121413 100%);padding:34px 27px 20px}
+.hero:before{background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.013) 3px 4px);mask-image:none}
+.hero:after{border:0}.hero-content{z-index:2}.hero-original-logo{position:absolute;right:15px;top:27px;width:142px;opacity:.98;z-index:1;pointer-events:none}.hero-original-logo img{width:100%;height:auto;display:block}
+.eyebrow{font-weight:750;letter-spacing:.14em;color:#e5ded0;font-size:10px;background:#1c1e1c;width:max-content;padding:7px 9px;border:1px solid #6e6b65}
+.hero h1{font-family:Impact,'Arial Narrow','Arial Black',sans-serif;font-size:clamp(47px,8.5vw,75px);line-height:.98;font-weight:900;letter-spacing:.018em;max-width:460px;margin:102px 0 22px;text-transform:uppercase;text-wrap:balance;text-shadow:0 3px 15px #101210}
+.hero h1 em{font-family:Impact,'Arial Narrow','Arial Black',sans-serif;color:#eee6d8;font-style:normal;letter-spacing:.012em}
+.hero p{font-size:13px;color:#d0cec6;max-width:380px;line-height:1.55}
+.hero-cta,.primary{border-radius:5px;background:#eeeae1;color:#141513;box-shadow:none;font-weight:850}
+.hero-cta:hover,.primary:hover{background:#fff}.hero-bottom{border-top:1px solid #63655f;color:#d0cdc3;font-size:9px}
+.hero-bottom i{background:#c2bcb1}.hero-edition{font-size:8px}
+.section-head h2,.panel h2,.page-title{font-family:Impact,'Arial Narrow','Arial Black',sans-serif;font-weight:800;letter-spacing:.025em;text-transform:uppercase}
+.section-head h2{font-size:30px}.section-kicker,.section-count,.small-link{color:#dbd2c0}.section-kicker{font-size:9px}
+.game-grid{gap:11px}.game-card,.game-card.mafia,.game-card.poker,.game-card.billiard{border-radius:6px;border:1px solid #52534c;box-shadow:none;background:#292c2a;min-height:228px}
+.game-card.mafia{background:linear-gradient(138deg,#424440,#202120)}.game-card.poker{background:linear-gradient(138deg,#3b3a36,#232523)}
+.game-card.billiard{min-height:171px;background:linear-gradient(115deg,#2b302e,#161817)}
+.game-overline{font-size:9px;letter-spacing:.11em;color:#d0cbc0}.game-card .game-title{font-family:Impact,'Arial Narrow','Arial Black',sans-serif;text-transform:uppercase;letter-spacing:.035em;font-size:31px}
+.game-card .game-text{color:#d1cec5}.game-arrow{color:#141513;background:#eae6dc;border-radius:3px}
+.art-card{border-radius:3px;background:#d8d5ce;color:#222}.art-card-2{background:#383b38;color:#f5f3ee}
+.poker-chip{filter:grayscale(1);}.poker-chip.chip-two{filter:grayscale(1) brightness(.8)}
+.ball-ball{background:radial-gradient(circle at 29% 24%,#91938a,#1c1d1a 45%,#080907 72%);border-color:#898a80}
+.tag{border-radius:3px;color:#e6dfd2;border-color:#65665f;background:#272a27}.tag.status{color:#c7c5bb;background:#303230}.bar span{background:#e7e2d9}
+.item{border-radius:6px;background:#202320;border:1px solid #3d423c}.item.event-item{border-radius:6px}.event-date{border-radius:4px;background:#2c2f2b;border-color:#62645b}.event-date small{color:#d9d2c1}
+.item-actions button,.chip,.panel,.secondary,.admin-tab,.metric{border-radius:5px}.item-actions .affirm,.chip.selected,.admin-tab.selected{color:#161716;background:#eae6dd;border-color:#eae6dd}
+.page-title{font-size:clamp(41px,9vw,57px)}.page-title em{font-family:Impact,'Arial Narrow','Arial Black',sans-serif;font-style:normal;color:#ddd3c0}
+.panel,.metric,.busy-box{background:#1f221f;border:1px solid #444940}.metric-value{color:#f4efe3}.secondary{color:#f5f0e7;background:#30322e;border-color:#65665e}
+input,select,textarea{background:#151715!important;border:1px solid #575b54!important;border-radius:5px!important;color:#f1eee5!important}
+input:focus,select:focus,textarea:focus{border-color:#f2eee0!important}
+
+.bottom-nav{background:rgba(13,15,13,.96);border-top:1px solid #5c5e55;box-shadow:0 -8px 30px #0004}.nav-btn{font-size:9px;color:#a8a8a1}.nav-btn.active{color:#f7f0e4}.nav-btn span{font-family:Arial,sans-serif}
+.ask-feature{position:relative;margin:24px 0 19px;padding:24px 22px;background:#ece7dd;color:#161715;border-radius:6px;border:1px solid #ece7dd}
+.ask-feature-label{font-size:9px;letter-spacing:.16em;font-weight:900}.ask-feature h2{font:900 clamp(27px,6vw,43px)/1.1 Impact,'Arial Black',sans-serif;margin:14px 0 10px;letter-spacing:.025em}
+.ask-feature h2 span{color:#54574f}.ask-feature p{font-size:12px;line-height:1.65;max-width:550px;margin-bottom:16px}.ask-feature .primary{background:#1a1c1a;color:#f5eee2;width:100%;max-width:320px}
+.location-panel{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:#eae6dd;padding:19px 20px;margin:0 0 15px;background:#1b1e1b;border:1px solid #585b53;border-radius:5px}
+.location-panel strong{font:700 22px/1.1 Impact,'Arial Black',sans-serif;letter-spacing:.045em}.location-overline{font-size:9px;letter-spacing:.14em;color:#bdb9ae}.location-foot{font-size:12px;color:#eee7d8}
+.chat-card{background:#202320;border:1px solid #575b53;border-radius:6px;overflow:hidden}.chat-top{padding:12px 15px;display:flex;gap:13px;align-items:center;border-bottom:1px solid #54564d;background:#292c28}.chat-top img{width:43px;height:43px;object-fit:contain}.chat-top strong{font-size:13px;letter-spacing:.07em}.chat-top small{display:block;font-size:9px;color:#b9b7ad;margin-top:5px;letter-spacing:.08em}
+.chat-messages{height:320px;overflow-y:auto;display:flex;flex-direction:column;align-items:flex-start;gap:11px;padding:20px 15px 15px;background:repeating-linear-gradient(0deg,#1e211e 0 39px,#1f221f 40px 40px)}
+.chat-msg{font-size:13px;line-height:1.55;white-space:pre-line;max-width:90%;padding:12px 14px;border:1px solid #575a52;border-radius:6px;overflow-wrap:anywhere}
+.chat-msg.bot{background:#333631;color:#f3efe7}.chat-msg.guest{align-self:flex-end;background:#e6e1d6;color:#101210;border-color:#e6e1d6}
+.chat-prompts{display:flex;gap:6px;overflow-x:auto;padding:9px 10px;border-top:1px solid #40453d}.chat-prompts button{white-space:nowrap;padding:8px 9px;border:1px solid #66695e;border-radius:3px;font-size:11px;color:#f0e9da;background:#292c28}
+.chat-form{display:flex;gap:9px;padding:10px;border-top:1px solid #41433d}.chat-form input{min-width:0;flex:1;height:48px}.chat-form button{width:49px;flex:0 0 49px;background:#eee9dc;color:#131513;border:0;border-radius:4px;font-size:25px}
+.chat-footnote{font-size:11px;color:#a9a69a;line-height:1.5;margin:12px 0}.chat-admin-link{width:100%;min-height:48px;text-align:center}
+@media(max-width:430px){.brand-photo{width:48px;height:48px;flex-basis:48px}.brand-name{font-size:22px}.brand-sub{font-size:8px}.hero{padding:24px 18px;min-height:375px}.hero-original-logo{width:122px;right:15px;top:38px}.hero h1{font-size:clamp(43px,11vw,57px);margin-top:110px}.hero p{max-width:300px}.game-card .game-title{font-size:28px}.bottom-nav{gap:0;padding-left:3px;padding-right:3px}.nav-btn{min-width:43px;font-size:9px}.nav-btn span{font-size:21px}}
+/* Prevent long Russian headings from creating horizontal scrolling on small phones. */
+.page-title{overflow-wrap:anywhere;max-width:100%}
+@media(max-width:440px){.page-title{font-size:clamp(33px,8.4vw,43px);line-height:1.05}.page-title em{overflow-wrap:anywhere}}
+
+/* v0.16.1 / legibility and tap targets: visual changes only, authentic logo untouched. */
+:root{--muted:#c3c0b7}
+.section-kicker,.game-overline,.location-overline,.ask-feature-label{font-size:10px}
+.chat-footnote,.page-subtitle,.game-card .game-text,.item p,.meta{color:#c8c5bb}
+.nav-btn{font-size:10px;min-height:43px}
+.nav-btn span{font-size:22px}
+.chat-prompts button{min-height:36px}
+@media (max-width:390px){.nav-btn{font-size:9.5px;min-width:40px}}
