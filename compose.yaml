@@ -1,0 +1,19 @@
+# For deployment on a Linux Docker host. Set BOT_IMAGE and TELEGRAM_BOT_TOKEN in .env.
+# This bot uses Telegram long polling and does not need published ports.
+services:
+  zvezdochka-telegram:
+    image: ${BOT_IMAGE:?Set BOT_IMAGE in .env (ghcr.io/OWNER/zvezdochka-telegram-bot:latest)}
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    volumes:
+      - bot_runtime:/app/runtime
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 45s
+
+volumes:
+  bot_runtime:

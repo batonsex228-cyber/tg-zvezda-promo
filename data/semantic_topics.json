@@ -1,0 +1,1125 @@
+{
+  "meta": {
+    "version": "1.0.4-tg",
+    "approved_sources_checked_at": "2026-11-17",
+    "purpose": "Curated semantic topic catalogue; regression messages are not stored as exact-answer templates.",
+    "policy": "Unapproved or real-time content never becomes asserted fact."
+  },
+  "topics": [
+    {
+      "topic_id": "shifts_all",
+      "title": "Список смен 2027",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "смен",
+        "график",
+        "расписан",
+        "лето",
+        "2027"
+      ],
+      "modifiers": [
+        "все",
+        "смен",
+        "от",
+        "первой",
+        "до",
+        "четвертой",
+        "календарь"
+      ],
+      "response": "📅 Опубликованные смены 2027 года:\n\n❄️ Зимняя: 3-8 января, 13 000 ₽.\n☀️ Летняя №1: 18 июня - 2 июля, 40 000 ₽.\n☀️ Летняя №2: 5-19 июля, 40 000 ₽.\n☀️ Летняя №3: 22 июля - 5 августа, 40 000 ₽.\n☀️ Летняя №4: 8-22 августа, 40 000 ₽.\n\nНаличие мест меняется. Если хотите записаться на смену, подскажите её номер.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "shift_1",
+      "title": "Первая смена",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "первая",
+        "1я",
+        "1",
+        "смен"
+      ],
+      "modifiers": [],
+      "response": "📅 Первая смена 2027: 18 июня - 2 июля. Стоимость путёвки - 40 000 ₽. Наличие мест нужно уточнять отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "shift_2",
+      "title": "Вторая смена",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "вторая",
+        "2я",
+        "2",
+        "смен"
+      ],
+      "modifiers": [],
+      "response": "📅 Вторая смена 2027: 5-19 июля. Стоимость путёвки - 40 000 ₽. Наличие мест нужно уточнять отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "shift_3",
+      "title": "Третья смена",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "третья",
+        "3я",
+        "3",
+        "смен"
+      ],
+      "modifiers": [],
+      "response": "📅 Третья смена 2027: 22 июля - 5 августа. Стоимость путёвки - 40 000 ₽. Наличие мест нужно уточнять отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "shift_4",
+      "title": "Четвёртая смена",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "четвертая",
+        "4я",
+        "4",
+        "смен"
+      ],
+      "modifiers": [],
+      "response": "📅 Четвёртая смена 2027: 8-22 августа. Стоимость путёвки - 40 000 ₽. Наличие мест нужно уточнять отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "winter",
+      "title": "Зимняя путёвка",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "зим",
+        "новогод",
+        "январ",
+        "северного"
+      ],
+      "modifiers": [
+        "путев",
+        "смен"
+      ],
+      "response": "❄️ Зимняя смена 2027 «Тайны Северного сияния»: 3-8 января. Стоимость - 13 000 ₽. Наличие мест уточняется отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "summer_price",
+      "title": "Цена путёвки",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "стоим",
+        "цен",
+        "стоит",
+        "почем",
+        "тысяч",
+        "денег"
+      ],
+      "modifiers": [
+        "лето",
+        "путев",
+        "смен",
+        "27"
+      ],
+      "response": "☀️ Стоимость одной летней путёвки на любую смену 2027 года - 40 000 ₽. Даты и условия можно посмотреть на странице смен. Наличие мест уточняется отдельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "discount",
+      "title": "Опубликованные скидки",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "скид",
+        "дисконт",
+        "дешевл",
+        "мчс",
+        "фсб",
+        "мвд",
+        "фсин",
+        "двоих",
+        "двое"
+      ],
+      "modifiers": [
+        "две",
+        "смен",
+        "путев"
+      ],
+      "response": "💳 По опубликованным условиям предусмотрена скидка 5% на вторую и последующие путёвки при покупке двух смен или путёвок для двух и более детей. Также 5% предоставляются сотрудникам МВД, ФСИН, ФСБ, МЧС и ВС РФ. Складываются ли скидки, нужно уточнить у менеджера.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "discount_other",
+      "title": "Другие льготы/скидки",
+      "policy": "clarify_or_handoff",
+      "required_review": false,
+      "anchors": [
+        "многодет",
+        "сво",
+        "инвалид",
+        "малоимущ",
+        "ветеран"
+      ],
+      "modifiers": [
+        "скид",
+        "льгот",
+        "положен"
+      ],
+      "response": "Вопрос по специальной льготе лучше уточнить у менеджера. По общему списку опубликованы только отдельные категории скидок. Не хочу обещать Вам неподтверждённую льготу.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "free_places",
+      "title": "Наличие мест",
+      "policy": "live_check",
+      "required_review": false,
+      "anchors": [
+        "мест",
+        "свобод",
+        "остал",
+        "налич",
+        "разобрал"
+      ],
+      "modifiers": [
+        "смен",
+        "июль",
+        "август"
+      ],
+      "response": "Свободные места на смены меняются. Я не вижу подтверждённого количества мест в реальном времени, поэтому лучше уточнить выбранную смену у менеджера.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "shift_apply",
+      "title": "Начать заявку",
+      "policy": "start_form",
+      "required_review": false,
+      "anchors": [
+        "запис",
+        "оформ",
+        "бронь",
+        "заявк",
+        "путев"
+      ],
+      "modifiers": [
+        "дочк",
+        "сын",
+        "ребен",
+        "смен"
+      ],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "form_consent",
+      "title": "Согласие на данные",
+      "policy": "form_consent",
+      "required_review": false,
+      "anchors": [
+        "согласен",
+        "согласна",
+        "отказываюсь",
+        "обработк",
+        "данных"
+      ],
+      "modifiers": [
+        "анкета"
+      ],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "form_change",
+      "title": "Исправить анкету",
+      "policy": "form_control",
+      "required_review": false,
+      "anchors": [
+        "исправ",
+        "поправ",
+        "ошибк",
+        "неверн",
+        "неправильно",
+        "опечатк"
+      ],
+      "modifiers": [
+        "анкет",
+        "фамили",
+        "дату",
+        "телефон"
+      ],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "form_confirmation",
+      "title": "Подтверждение анкеты",
+      "policy": "form_control",
+      "required_review": false,
+      "anchors": [
+        "подтверждаю",
+        "отправляйте",
+        "верно",
+        "отмена",
+        "передумали"
+      ],
+      "modifiers": [
+        "заявка"
+      ],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "age",
+      "title": "Возраст ребёнка",
+      "policy": "needs_confirmation",
+      "required_review": true,
+      "anchors": [
+        "возраст",
+        "лет",
+        "17",
+        "7",
+        "6",
+        "16",
+        "ребенок"
+      ],
+      "modifiers": [
+        "возьм",
+        "принимают"
+      ],
+      "response": "На официальной странице смен сейчас указан возраст 7-17 лет, но у нас есть расхождение со старой памяткой. Для конкретного возраста и даты рождения я рекомендую подтвердить возможность участия у менеджера.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html | data/seed_faq.json:age",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "food_freq",
+      "title": "Питание сколько раз",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "корм",
+        "питан",
+        "покуш",
+        "едят",
+        "еда",
+        "голодают",
+        "приемов",
+        "пищ"
+      ],
+      "modifiers": [
+        "сколько",
+        "раз",
+        "сутки"
+      ],
+      "response": "🍲 В лагере предусмотрено пятиразовое питание.",
+      "verified_source": "https://zvezdaglazov.ru/",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "menu_today",
+      "title": "Точное меню/рацион",
+      "policy": "clarify_or_handoff",
+      "required_review": false,
+      "anchors": [
+        "меню",
+        "блюд",
+        "завтрак",
+        "обед",
+        "ужин",
+        "готовят",
+        "раскладк"
+      ],
+      "modifiers": [
+        "сегодня",
+        "завтра",
+        "по",
+        "дням"
+      ],
+      "response": "У меня нет утверждённого меню по конкретным датам. Если нужна раскладка по дням или особое питание, это можно уточнить у администрации.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "food_allergy",
+      "title": "Аллергия/спецпитание",
+      "policy": "personal_to_human",
+      "required_review": false,
+      "anchors": [
+        "аллерг",
+        "глютен",
+        "диабет",
+        "неперенос",
+        "молок",
+        "диет"
+      ],
+      "modifiers": [
+        "корм",
+        "рацион",
+        "можно"
+      ],
+      "response": "Индивидуальное питание и медицинские особенности ребёнка нужно согласовать с администрацией и медработником. Я не могу обещать специальное меню без подтверждения.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "arrival",
+      "title": "Время заезда/выезда",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "привоз",
+        "заезд",
+        "выезд",
+        "забира",
+        "забрать"
+      ],
+      "modifiers": [
+        "сколько",
+        "время",
+        "когда",
+        "раньше",
+        "последний"
+      ],
+      "response": "🚗 Заезд и выезд проходят с 08:00 до 11:00. Конкретную дату определяет выбранная смена. Если нужна помощь с дорогой, уточните, откуда Вы едете.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "transfer",
+      "title": "Трансфер/дорога",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "довоз",
+        "автобус",
+        "трансфер",
+        "самим",
+        "достав",
+        "забираете"
+      ],
+      "modifiers": [
+        "дет",
+        "город",
+        "самим",
+        "входит"
+      ],
+      "response": "🚌 Трансфер в стоимость путёвки не входит. По опубликованным условиям ребёнка нужно привезти и забрать самостоятельно.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "visits",
+      "title": "Посещения",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "навещ",
+        "посещ",
+        "приех",
+        "приход"
+      ],
+      "modifiers": [
+        "дет",
+        "дочк",
+        "ребен",
+        "мама",
+        "лагер"
+      ],
+      "response": "❤️ Навестить ребёнка можно по правилам конкретной смены и после согласования с администрацией. Точные дни и часы нужно уточнить у сотрудников лагеря.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "phone_policy",
+      "title": "Телефоны детей",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "телефон",
+        "смартфон",
+        "мобил",
+        "выда",
+        "отбира",
+        "сда",
+        "хран",
+        "звонить"
+      ],
+      "modifiers": [
+        "ребен",
+        "вожат"
+      ],
+      "response": "Условия хранения телефонов и точное время звонков зависят от правил смены. Рекомендую уточнить их у менеджера, чтобы не дать Вам устаревшее расписание.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "contact_child",
+      "title": "Связь с ребёнком",
+      "policy": "personal_to_human",
+      "required_review": false,
+      "anchors": [
+        "вожат",
+        "отряд",
+        "дочка",
+        "сын",
+        "ребенок",
+        "мой",
+        "вася",
+        "корпус",
+        "поговорить"
+      ],
+      "modifiers": [
+        "номер",
+        "как",
+        "связаться",
+        "где",
+        "живет"
+      ],
+      "response": "Я не могу сообщать расположение ребёнка или личные контакты вожатых без проверки полномочий. Для связи с администрацией позвоните +7 (982) 792-81-08.",
+      "verified_source": "https://zvezdaglazov.ru/pages/contacts.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "arrival_docs",
+      "title": "Документы на заезд",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "документ",
+        "справк",
+        "полис",
+        "свидетельств",
+        "анализ"
+      ],
+      "modifiers": [
+        "заезд",
+        "нужно",
+        "привезти",
+        "список"
+      ],
+      "response": "На официальной странице родителей есть список: анкета, согласия, договор, страховка, форма 079/у, анализы, полис ОМС и копия свидетельства о рождении или паспорта. Сроки медсправок и необходимость оригиналов уточните по актуальному пакету документов.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "contract_docs",
+      "title": "Документы для договора",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "договор",
+        "паспорт",
+        "снилс",
+        "оформлен"
+      ],
+      "modifiers": [
+        "путев",
+        "покупк",
+        "мама"
+      ],
+      "response": "Список документов для оформления договора нужно уточнить по действующим правилам. Я могу подсказать контакты отдела продаж.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "form_079",
+      "title": "Справка 079/у",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "079",
+        "медсправк",
+        "педиатр"
+      ],
+      "modifiers": [
+        "срок",
+        "день",
+        "делать",
+        "сколько"
+      ],
+      "response": "На странице для родителей указана справка формы 079/у. Точные сроки её оформления и дополнительные медицинские требования уточните у администрации.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "medicines",
+      "title": "Лекарства",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "лекарств",
+        "таблетк",
+        "препарат",
+        "антибиотик",
+        "медикамент"
+      ],
+      "modifiers": [
+        "положить",
+        "передать",
+        "ребен"
+      ],
+      "response": "💊 Если ребёнку нужны постоянные лекарства, заранее сообщите об этом медицинскому работнику. Препараты нужно лично передать взрослому вместе с инструкцией. Не кладите их ребёнку для самостоятельного хранения. Индивидуальные назначения согласовываются с медработником.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "illness",
+      "title": "Болезнь в лагере",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "температур",
+        "простуд",
+        "заболеет",
+        "медпункт",
+        "врач",
+        "позов"
+      ],
+      "modifiers": [
+        "лагере"
+      ],
+      "response": "🏥 Если ребёнок заболеет во время смены, его осмотрит медицинский работник, а родителям сообщат о состоянии и дальнейших действиях. В конкретной срочной ситуации лучше сразу связаться с лагерем по телефону.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "clothing",
+      "title": "Одежда",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "одежд",
+        "тепл",
+        "кофт",
+        "шмот",
+        "дождев",
+        "вещ"
+      ],
+      "modifiers": [
+        "собрать",
+        "сколько"
+      ],
+      "response": "🎒 Из одежды рекомендуются футболки, бельё, носки, пижама, спортивная одежда, тёплая кофта, длинные брюки, головной убор и дождевик.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "shoes",
+      "title": "Обувь",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "кросс",
+        "тапоч",
+        "обув",
+        "тапк",
+        "кед",
+        "сандал"
+      ],
+      "modifiers": [
+        "чемодан"
+      ],
+      "response": "👟 Возьмите спортивную обувь, сандалии или босоножки, шлёпки или сланцы и домашние тапочки. Предпочтительна удобная обувь по размеру.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "hygiene",
+      "title": "Гигиена",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "гигиен",
+        "зубн",
+        "шампун",
+        "мыл",
+        "паста",
+        "рыльн"
+      ],
+      "modifiers": [
+        "с",
+        "собой"
+      ],
+      "response": "🪥 Возьмите зубную щётку и пасту, шампунь, гель для тела, расчёску, сухие и влажные салфетки, солнцезащитное средство и средство от комаров без аэрозоля.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "forbidden_food",
+      "title": "Запрещённая еда",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "запрещ",
+        "чипс",
+        "кол",
+        "дошик",
+        "сухарик",
+        "продукт",
+        "ед"
+      ],
+      "modifiers": [
+        "можно",
+        "нельзя",
+        "давать"
+      ],
+      "response": "🥤 По действующей странице для родителей в лагерь нельзя брать газировку, чипсы, сухарики, торты, мясные и молочные продукты, грибы, ягоды, цитрусовые, фастфуд и блюда быстрого приготовления. Полный список есть в памятке для родителей.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "allowed_food",
+      "title": "Разрешённые передачи",
+      "policy": "needs_confirmation",
+      "required_review": true,
+      "anchors": [
+        "апельсин",
+        "цитрус",
+        "яблок",
+        "печеньк",
+        "шоколад",
+        "передача",
+        "еду"
+      ],
+      "modifiers": [
+        "можно",
+        "продукты"
+      ],
+      "response": "На актуальной странице родителей цитрусовые указаны в запрещённых продуктах, но более ранняя памятка отличается. Поэтому спорные продукты лучше согласовать с лагерем до передачи.",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "forbidden_items",
+      "title": "Запрещённые предметы",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "вейп",
+        "ножик",
+        "запрет",
+        "предмет",
+        "сигарет",
+        "нельзя",
+        "вещ"
+      ],
+      "modifiers": [
+        "разрешен",
+        "можно",
+        "брать"
+      ],
+      "response": "🚫 Запрещены спички, зажигалки, пиротехника, сигареты и вейпы, алкоголь, колющие и режущие предметы (кроме маникюрных ножниц).",
+      "verified_source": "https://zvezdaglazov.ru/pages/parents.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "contacts",
+      "title": "Связаться с лагерем",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "контакт",
+        "почт",
+        "телефон",
+        "позвон",
+        "номер",
+        "админ",
+        "емейл"
+      ],
+      "modifiers": [
+        "лагер",
+        "путев",
+        "связ"
+      ],
+      "response": "📞 Связаться с лагерем: +7 (982) 792-81-08.\n\n📩 Почта: dzl_razvitie@mail.ru.",
+      "verified_source": "https://zvezdaglazov.ru/pages/contacts.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "camp_address",
+      "title": "Местоположение лагеря",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "адрес",
+        "навигатор",
+        "адам",
+        "физически"
+      ],
+      "modifiers": [
+        "физически",
+        "куда",
+        "ехать"
+      ],
+      "response": "📍 Лагерь расположен в Глазовском районе рядом с деревней Адам. Для точного маршрута используйте официальную карту или уточните ориентиры у администрации. Адрес офиса продаж - другой.",
+      "verified_source": "https://zvezdaglazov.ru/",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "office_address",
+      "title": "Адрес офиса продаж",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "офис",
+        "офлайн",
+        "ленина",
+        "продаж"
+      ],
+      "modifiers": [
+        "где",
+        "купить",
+        "путев"
+      ],
+      "response": "📍 Офис продаж: г. Глазов, ул. Ленина, 11Г (цокольный этаж). Для уточнения часов работы перед визитом позвоните: +7 (982) 792-81-08.",
+      "verified_source": "https://zvezdaglazov.ru/pages/contacts.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "program",
+      "title": "Программа лагеря",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "активност",
+        "занят",
+        "кружк",
+        "программ",
+        "танц",
+        "блогинг"
+      ],
+      "modifiers": [
+        "дет",
+        "ребят",
+        "заняты"
+      ],
+      "response": "Обычно программа включает спорт, творчество и мероприятия, но точное расписание и кружки конкретной смены уточните у лагеря.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "territory",
+      "title": "Территория и корпуса",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "территор",
+        "бассейн",
+        "корпус",
+        "душ",
+        "площадк"
+      ],
+      "modifiers": [
+        "лагер",
+        "звездочк",
+        "комнат"
+      ],
+      "response": "По информации на сайте есть корпуса, медкабинет, столовая, игровые и спортивные площадки. Конкретное оснащение комнаты или наличие бассейна лучше уточнить, чтобы не вводить в заблуждение.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "included",
+      "title": "Включено в путёвку",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "вход",
+        "включ",
+        "доплач",
+        "страховк",
+        "кружк"
+      ],
+      "modifiers": [
+        "путев",
+        "тыс",
+        "стоим",
+        "питан"
+      ],
+      "response": "На официальном сайте описаны проживание, питание и программа лагеря. Полный состав услуг, включённых в конкретную путёвку, и возможные доплаты лучше подтвердить у менеджера.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "lost",
+      "title": "Потерянные вещи",
+      "policy": "needs_review",
+      "required_review": true,
+      "anchors": [
+        "потерял",
+        "забыл",
+        "пропал",
+        "находк",
+        "вещ"
+      ],
+      "modifiers": [
+        "дочк",
+        "кофт",
+        "лагер",
+        "после"
+      ],
+      "response": "Если ребёнок забыл вещь, сообщите об этом администрации. Наличие найденной вещи и порядок выдачи нужно уточнить у сотрудников.",
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "gazebo_price",
+      "title": "Цена беседки",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "бесед",
+        "беседоч",
+        "мангал",
+        "угл",
+        "аренд"
+      ],
+      "modifiers": [
+        "стоит",
+        "цен",
+        "час",
+        "угл",
+        "входит"
+      ],
+      "response": "🌿 Аренда беседки по опубликованному тарифу - 3 300 ₽ за 3 часа. Мангал, уголь, розжиг и решётка включены. На другое время стоимость нужно уточнять.",
+      "verified_source": "https://zvezdaglazov.ru/pages/extra-services.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "gazebo_booking",
+      "title": "Бронь беседки",
+      "policy": "live_check",
+      "required_review": false,
+      "anchors": [
+        "беседк",
+        "беседочк",
+        "бронь",
+        "заброни",
+        "свободна"
+      ],
+      "modifiers": [
+        "дата",
+        "субботу"
+      ],
+      "response": "Свободное время для беседки можно подтвердить только по актуальному календарю бронирований. Я не буду обещать бронь без проверки.",
+      "verified_source": "https://zvezdaglazov.ru/pages/extra-services.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "weekend",
+      "title": "Тур выходного дня",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "ночев",
+        "выходн",
+        "ночь",
+        "проживан",
+        "корпус"
+      ],
+      "modifiers": [
+        "сколько",
+        "цен",
+        "стоит",
+        "выйдет",
+        "завтрак"
+      ],
+      "response": "🏡 Опубликованный тариф «Тур выходного дня» - 1 450 ₽ с человека. Включены проживание, ужин и завтрак. Даты, вместимость и стоимость иных вариантов ночёвки нужно согласовать с лагерем.",
+      "verified_source": "https://zvezdaglazov.ru/pages/extra-services.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "quests",
+      "title": "Квесты",
+      "policy": "answer",
+      "required_review": false,
+      "anchors": [
+        "квест",
+        "qr",
+        "квесте"
+      ],
+      "modifiers": [
+        "500",
+        "телефон"
+      ],
+      "response": "🧩 QR-квест и «Тайна старого лагеря» стоят по 500 ₽ с человека. Для QR-квеста нужен смартфон с интернетом.",
+      "verified_source": "https://zvezdaglazov.ru/pages/extra-services.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "events",
+      "title": "События и залы",
+      "policy": "conditional_answer",
+      "required_review": false,
+      "anchors": [
+        "корпоратив",
+        "свадьб",
+        "банкет",
+        "конференц",
+        "праздник"
+      ],
+      "modifiers": [
+        "провести",
+        "организовать",
+        "зал",
+        "аренд"
+      ],
+      "response": "🎉 В лагере можно обсудить проведение мероприятия: банкетный зал до 120 человек, конференц-зал до 200. Стоимость и свободные даты рассчитываются индивидуально, их уточнит менеджер.",
+      "verified_source": "https://zvezdaglazov.ru/pages/extra-services.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2026-12-18"
+    },
+    {
+      "topic_id": "payment_refund",
+      "title": "Оплата, возврат, рассрочка",
+      "policy": "clarify_or_handoff",
+      "required_review": false,
+      "anchors": [
+        "рассроч",
+        "кредит",
+        "оплат",
+        "предоплат",
+        "аванс",
+        "возврат",
+        "вернет",
+        "отмена",
+        "путевки"
+      ],
+      "modifiers": [
+        "частями"
+      ],
+      "response": "Условия предоплаты, рассрочки и возврата зависят от договора. Без актуальных правил я не буду обещать конкретную сумму или срок возврата - лучше уточнить у менеджера.",
+      "verified_source": "https://zvezdaglazov.ru/pages/trip.html",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "social",
+      "title": "Вежливые реплики",
+      "policy": "social",
+      "required_review": false,
+      "anchors": [
+        "спасибо",
+        "благодарю",
+        "до",
+        "свидания",
+        "пока",
+        "ок",
+        "хорошо"
+      ],
+      "modifiers": [],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "multi_intent",
+      "title": "Несколько вопросов в одном сообщении",
+      "policy": "multi_answer",
+      "required_review": false,
+      "anchors": [
+        "и",
+        "еще",
+        "подскажите",
+        "несколько",
+        "вопросов",
+        "и",
+        "когда",
+        "и",
+        "сколько"
+      ],
+      "modifiers": [],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    },
+    {
+      "topic_id": "context_followup",
+      "title": "Продолжение диалога",
+      "policy": "context",
+      "required_review": false,
+      "anchors": [
+        "а",
+        "там",
+        "сколько",
+        "на",
+        "эту",
+        "дату",
+        "а",
+        "цена",
+        "та",
+        "же"
+      ],
+      "modifiers": [],
+      "response": null,
+      "verified_source": "",
+      "source_checked_at": "2026-11-17",
+      "valid_until": "2027-06-01"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+DZL ZVEZDOCHKA TELEGRAM v1.0.1 - PYTHON DISCOVERY HOTFIX
+
+ERROR FIXED:
+  Python 3.12 installed successfully via winget, but START_TELEGRAM.bat
+  still reported Python 3.11-3.13 not found.
+
+IF YOU ALREADY UNPACKED v1.0.0:
+1. Close the old BAT window.
+2. Unpack the v1.0.1 PATCH into your existing Telegram bot folder.
+   Allow overwrite of scripts/windows_start.ps1 and app/version.py.
+3. Launch the EXISTING START_TELEGRAM.bat again.
+
+You do NOT need to delete your .env, runtime, or .venv.
+The patch does not contain or overwrite any of those files.
+
+IF YOU HAVEN'T SET UP THE BOT YET:
+  Download and unpack the FULL v1.0.1 ZIP, then run START_TELEGRAM.bat.
+
+If Python detection still fails after this hotfix, reboot Windows once,
+then run py -0p and where python in a separate CMD window and send their
+output only. NEVER send your Telegram token.

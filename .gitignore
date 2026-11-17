@@ -1,0 +1,19 @@
+.env
+.venv/
+runtime/
+__pycache__/
+*.pyc
+*.log
+
+# v1.0.2 Windows bootstrap
+.tools/
+.venv_old_*/
+
+# Docker release / Windows local files
+*.sqlite
+*.sqlite3
+*.db
+*.zip
+*.bak
+.venv_old_*/
+.DS_Store

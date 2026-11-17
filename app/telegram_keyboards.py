@@ -1,0 +1,188 @@
+from __future__ import annotations
+
+import json
+
+from .links import CALLBACK_FORM, CHARTER_DOWNLOAD, DOCUMENTS_DOWNLOAD, EXTRA_SERVICES_FORM, SUMMER_SHIFTS_FORM, WINTER_SHIFT_FORM
+
+
+def _payload(**data) -> str:
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+
+
+def _text(label: str, intent: str, color: str = "secondary") -> dict:
+    return {"color": color, "action": {"type": "text", "label": label, "payload": _payload(intent=intent)}}
+
+
+def _callback(label: str, payload: dict, color: str = "secondary") -> dict:
+    return {"color": color, "action": {"type": "callback", "label": label, "payload": _payload(**payload)}}
+
+
+def _open_link(label: str, url: str) -> dict:
+    return {"action": {"type": "open_link", "label": label, "link": url, "payload": "{}"}}
+
+
+def _dump(buttons: list[list[dict]], *, inline: bool = True, one_time: bool = False) -> str:
+    return json.dumps({"one_time": one_time, "inline": inline, "buttons": buttons}, ensure_ascii=False, separators=(",", ":"))
+
+
+def main_keyboard() -> str:
+    return _dump([
+        [_text("📅 Смены и цены", "shifts_prices", "primary"), _text("🍲 Питание", "food")],
+        [_text("🎒 Что взять", "bring"), _text("📄 Документы", "documents")],
+        [_text("🚗 Заезд", "arrival"), _text("📞 Контакты", "contacts")],
+        [_text("🔔 Важные уведомления", "notifications")],
+        [_text("❓ Задать свой вопрос", "ask", "positive")],
+    ], inline=False)
+
+
+def answer_keyboard(faq_id: str | None, feedback_id: int | None = None) -> str | None:
+    rows: list[list[dict]] = []
+    if faq_id in {"summer-shifts-2027", "all-prices", "discounts"}:
+        rows.append([_open_link("❄️ Зимняя путёвка", WINTER_SHIFT_FORM), _open_link("☀️ Летние путёвки", SUMMER_SHIFTS_FORM)])
+    elif faq_id in {"shift-1-2027", "shift-2-2027", "shift-3-2027", "shift-4-2027"}:
+        rows.append([_open_link("🎟 Купить путёвку", SUMMER_SHIFTS_FORM)])
+    elif faq_id == "winter-2027":
+        rows.append([_open_link("❄️ Купить зимнюю путёвку", WINTER_SHIFT_FORM)])
+    elif faq_id == "extra-services":
+        rows.append([_open_link("✨ Оставить заявку", EXTRA_SERVICES_FORM)])
+    elif faq_id == "contacts":
+        rows.append([_open_link("📞 Заказать обратный звонок", CALLBACK_FORM)])
+    elif faq_id in {"documents", "parent-document-forms", "sanitary-conclusion-2026"}:
+        rows.append([_open_link("📄 Открыть документы", DOCUMENTS_DOWNLOAD)])
+    elif faq_id == "charter":
+        rows.append([_open_link("📘 Открыть устав", CHARTER_DOWNLOAD)])
+    if feedback_id is not None:
+        rows.append([
+            _callback("👍 Помогло", {"action": "feedback", "value": "yes", "id": feedback_id}, "positive"),
+            _callback("👎 Нужен специалист", {"action": "feedback", "value": "no", "id": feedback_id}, "negative"),
+        ])
+    return _dump(rows) if rows else None
+
+
+def fallback_keyboard() -> str:
+    return _dump([[_open_link("📞 Заказать обратный звонок", CALLBACK_FORM)]])
+
+
+def clarification_keyboard(kind: str) -> str | None:
+    if kind == "address":
+        return _dump([[
+            _text("🏢 Офис продаж", "contacts", "primary"),
+            _callback("🏕 Адрес лагеря", {"action": "clarify", "intent": "camp_address"}, "secondary"),
+        ]])
+    return None
+
+
+def notification_keyboard(subscribed: bool) -> str:
+    if subscribed:
+        return _dump([[_callback("🔕 Отключить уведомления", {"action": "notifications", "value": "off"}, "negative")]])
+    return _dump([[_callback("✅ Получать уведомления", {"action": "notifications", "value": "on"}, "positive")]])
+
+
+def manager_ticket_keyboard(ticket_id: int) -> str:
+    return _dump([[_callback("✍ Ответить", {"action": "manager_reply", "ticket_id": ticket_id}, "primary")]])
+
+
+
+def parent_booking_confirmation_keyboard() -> str:
+    return _dump([[
+        _callback("✅ Подтвердить заявку", {"action": "booking_parent", "cmd": "confirm"}, "positive"),
+        _callback("❌ Отмена", {"action": "booking_parent", "cmd": "cancel"}, "negative"),
+    ]])
+
+
+def manager_booking_keyboard(booking_id: str) -> str:
+    return _dump([[
+        _callback("✅ Подтвердить", {"action": "booking_manager", "cmd": "approve", "booking_id": booking_id}, "positive"),
+        _callback("❌ Отклонить", {"action": "booking_manager", "cmd": "reject", "booking_id": booking_id}, "negative"),
+    ]])
+
+def shift_consent_keyboard() -> str:
+    """An inline answer must be handled only by the active consent session."""
+    return _dump([[
+        _callback('✅ Согласен', {'action':'shift_parent','cmd':'consent_yes'}, 'positive'),
+        _callback('❌ Отказываюсь', {'action':'shift_parent','cmd':'consent_no'}, 'negative'),
+    ]])
+
+
+def shift_review_keyboard() -> str:
+    return _dump([
+        [_callback('✅ Подтверждаю', {'action':'shift_parent','cmd':'submit'}, 'positive')],
+        [_callback('✏ Исправить', {'action':'shift_parent','cmd':'edit'}, 'primary'),
+         _callback('❌ Отмена', {'action':'shift_parent','cmd':'cancel'}, 'negative')],
+    ])
+
+
+def manager_shift_keyboard(application_id: str) -> str:
+    return _dump([[
+        _callback("✅ Подтвердить заявку", {"action":"shift_manager", "cmd":"approve", "application_id":application_id}, "positive"),
+        _callback("❌ Отклонить заявку", {"action":"shift_manager", "cmd":"reject", "application_id":application_id}, "negative"),
+    ]])
+
+
+def parent_intake_confirmation_keyboard() -> str:
+    return _dump([[
+        _callback("✅ Передать специалисту", {"action": "intake_parent", "cmd": "confirm"}, "positive"),
+        _callback("❌ Отмена", {"action": "intake_parent", "cmd": "cancel"}, "negative"),
+    ]])
+
+
+def knowledge_candidate_keyboard(ticket_id: int) -> str:
+    return _dump([
+        [_callback("✅ Добавить в базу", {"action": "knowledge_loop", "cmd": "add", "ticket_id": ticket_id}, "positive")],
+        [_callback("✏️ Изменить ответ", {"action": "knowledge_loop", "cmd": "edit", "ticket_id": ticket_id}, "primary"),
+         _callback("❌ Не добавлять", {"action": "knowledge_loop", "cmd": "skip", "ticket_id": ticket_id}, "negative")],
+    ])
+
+
+def admin_keyboard() -> str:
+    return _dump([
+        [_callback("📊 Статистика", {"action": "admin", "cmd": "stats"}, "primary"), _callback("🆘 Открытые вопросы", {"action": "admin", "cmd": "open"})],
+        [_callback("📢 Создать рассылку", {"action": "admin", "cmd": "newsletter"}, "positive")],
+        [_callback("📚 База знаний", {"action": "admin", "cmd": "knowledge"}, "primary")],
+        [_callback("👎 Проблемные ответы", {"action": "admin", "cmd": "bad"}), _callback("🔄 Диагностика", {"action": "admin", "cmd": "diag"})],
+    ])
+
+
+def newsletter_preview_keyboard(campaign_id: int) -> str:
+    return _dump([
+        [_callback("🚀 Отправить", {"action": "newsletter", "cmd": "send", "campaign_id": campaign_id}, "positive")],
+        [_callback("✏ Изменить", {"action": "newsletter", "cmd": "edit", "campaign_id": campaign_id}),
+         _callback("❌ Отмена", {"action": "newsletter", "cmd": "cancel", "campaign_id": campaign_id}, "negative")],
+    ])
+
+
+def shifts_carousel_template() -> str:
+    elements = [
+        {"title": "❄️ Зимняя смена", "description": "3–8 января 2027\n13 000 ₽", "buttons": [{"action": {"type": "open_link", "link": WINTER_SHIFT_FORM, "label": "Выбрать"}}]},
+        {"title": "☀️ 1 смена", "description": "18 июня – 2 июля\n40 000 ₽", "buttons": [{"action": {"type": "open_link", "link": SUMMER_SHIFTS_FORM, "label": "Выбрать"}}]},
+        {"title": "☀️ 2 смена", "description": "5–19 июля\n40 000 ₽", "buttons": [{"action": {"type": "open_link", "link": SUMMER_SHIFTS_FORM, "label": "Выбрать"}}]},
+        {"title": "☀️ 3 смена", "description": "22 июля – 5 августа\n40 000 ₽", "buttons": [{"action": {"type": "open_link", "link": SUMMER_SHIFTS_FORM, "label": "Выбрать"}}]},
+        {"title": "☀️ 4 смена", "description": "8–22 августа\n40 000 ₽", "buttons": [{"action": {"type": "open_link", "link": SUMMER_SHIFTS_FORM, "label": "Выбрать"}}]},
+    ]
+    return json.dumps({"type": "carousel", "elements": elements}, ensure_ascii=False, separators=(",", ":"))
+
+
+def knowledge_menu_keyboard() -> str:
+    return _dump([
+        [_callback("➕ Постоянное знание", {"action": "knowledge", "cmd": "permanent"}, "positive")],
+        [_callback("⏱ Временное знание", {"action": "knowledge", "cmd": "temporary"}, "primary")],
+        [_callback("📋 Показать знания", {"action": "knowledge", "cmd": "list"})],
+        [_callback("↩ В админ-меню", {"action": "knowledge", "cmd": "back"})],
+    ])
+
+
+def knowledge_ttl_keyboard() -> str:
+    return _dump([
+        [_callback("1 день", {"action": "knowledge", "cmd": "ttl", "days": 1}),
+         _callback("7 дней", {"action": "knowledge", "cmd": "ttl", "days": 7})],
+        [_callback("30 дней", {"action": "knowledge", "cmd": "ttl", "days": 30}),
+         _callback("90 дней", {"action": "knowledge", "cmd": "ttl", "days": 90})],
+        [_callback("❌ Отмена", {"action": "knowledge", "cmd": "cancel"}, "negative")],
+    ])
+
+
+def knowledge_preview_keyboard() -> str:
+    return _dump([
+        [_callback("✅ Сохранить", {"action": "knowledge", "cmd": "save"}, "positive")],
+        [_callback("❌ Отмена", {"action": "knowledge", "cmd": "cancel"}, "negative")],
+    ])

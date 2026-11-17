@@ -1,0 +1,85 @@
+name: Telegram bot - tests and GHCR Docker image
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  test-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Telegram offline self-test
+        run: python scripts/local_self_test.py
+
+      - name: Telegram shift, manager and FAQ flow
+        run: python scripts/telegram_flow_test.py
+
+      - name: Telegram replies and social reactions
+        run: python scripts/telegram_social_reply_test.py
+
+      - name: Semantic regression - 150 examples
+        run: python scripts/semantic_regression_test.py
+
+      - name: Conversation regression - 20 cases
+        run: python scripts/context_20_test.py
+
+      - name: Telegram semantic adapter test
+        run: python scripts/telegram_semantic_flow_test.py
+
+      - name: Google Apps Script compatibility self-test
+        run: node google_apps_script/self_test.js
+
+      - name: Verify source safety and version
+        run: python scripts/docker_release_check.py
+
+      - name: Normalize image name
+        shell: bash
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+
+      - name: Set up QEMU for ARM64 builds
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:v1.0.4
+            ${{ env.IMAGE }}:sha-${{ github.sha }}
+          build-args: |
+            SOURCE_REPOSITORY=https://github.com/${{ github.repository }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.title=Zvezdochka Telegram Bot
+            org.opencontainers.image.version=1.0.4
