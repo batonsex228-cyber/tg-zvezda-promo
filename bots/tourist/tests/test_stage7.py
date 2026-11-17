@@ -129,11 +129,11 @@ def test_tunnel_resets_temp_menu_without_leaking_token(monkeypatch,capsys):
         def __init__(self,**kwargs):pass
         def __enter__(self):return self
         def __exit__(self,*args):pass
-        def post(self,url,json):
-            seen.append((url,json));return FakeResponse()
+        def post(self,url,json,headers=None):
+            seen.append((url,json,headers));return FakeResponse()
     monkeypatch.setattr(httpx,'Client',FakeClient)
     assert run_tunnel.reset_temporary_menu(TOKEN)
-    assert seen==[(f'https://api.telegram.org/bot{TOKEN}/setChatMenuButton',{'menu_button':{'type':'commands'}})]
+    assert seen==[(f'https://api.telegram.org/bot{TOKEN}/setChatMenuButton',{'menu_button':{'type':'commands'}}, {})]
     assert TOKEN not in capsys.readouterr().out
 
 
@@ -197,7 +197,7 @@ def simulated_bot(monkeypatch):
     class InlineKeyboardMarkup(DTO):pass
     class FakeBot:
         last=None
-        def __init__(self,token):
+        def __init__(self,token,session=None):
             self.token=token; self.commands=[]; self.menu_button=None
             self.polling_started=False; self.session=types.SimpleNamespace(close=self.close)
             FakeBot.last=self
@@ -224,6 +224,8 @@ def simulated_bot(monkeypatch):
                      'ReplyKeyboardMarkup','ReplyKeyboardRemove'):
         setattr(mods['aiogram.types'],typename, type(typename,(DTO,),{}))
     for name,module in modules.items():monkeypatch.setitem(sys.modules,name,module)
+    from app import telegram_transport
+    monkeypatch.setattr(telegram_transport, 'build_aiogram_session', lambda: None)
     original=sys.modules.pop('app.bot',None)
     bot=importlib.import_module('app.bot')
     yield bot,FakeBot

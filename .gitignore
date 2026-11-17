@@ -1,6 +1,5 @@
 .env
 .env.*
-!.env.example
 **/.env
 **/.env.*
 **/__pycache__/
@@ -21,3 +20,7 @@
 .DS_Store
 
 _dual_import/
+
+# Keep public templates for one-command server setup and Tourist Windows QA.
+!.env.example
+!**/.env.example
