@@ -130,15 +130,25 @@ class TelegramAdapter:
             await self.shifts.backend.close()
 
     async def api(self, method: str, **params: Any) -> Any:
-        # TLS requests are sent only to official Bot API; tokens never printed or logged.
+        # The configured HTTPS origin can be a trusted Cloudflare Worker relay.
+        # The standard Telegram /bot<TOKEN>/<method> path is unchanged.
+        # Never log the full URL: it contains the Telegram bot token.
+        headers = ({'X-Relay-Key': self.settings.telegram_relay_key}
+                   if self.settings.telegram_relay_key else None)
         try:
             response = await self.client.post(
-                f'https://api.telegram.org/bot{self.settings.telegram_bot_token}/{method}', json=params)
+                f'{self.settings.telegram_api_base_url.rstrip("/")}/bot'
+                f'{self.settings.telegram_bot_token}/{method}',
+                json=params, headers=headers)
         except httpx.HTTPError as exc:
             # httpx exceptions can contain the full URL including the secret token.
             raise TelegramAPIError(method, None, type(exc).__name__) from None
         try: body = response.json()
-        except ValueError: raise TelegramAPIError(method, response.status_code, 'Non-JSON response')
+        except ValueError:
+            detail = ('Relay denied access; check TELEGRAM_RELAY_KEY and Worker settings'
+                      if response.status_code in (401, 403)
+                      else 'Non-JSON response from Telegram API or relay')
+            raise TelegramAPIError(method, response.status_code, detail)
         if not response.is_success or not body.get('ok'):
             code = int(body.get('error_code') or response.status_code)
             raise TelegramAPIError(method, code, str(body.get('description') or 'Unknown API error'))

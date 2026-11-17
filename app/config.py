@@ -57,6 +57,22 @@ def _normalize_site_url(raw: str) -> str:
     return value
 
 
+def _telegram_api_base_url(raw: str) -> str:
+    """Return a Bot API origin. The token/method path is appended by the adapter.
+
+    An explicit HTTPS relay is trusted to receive the BotFather token; reject
+    paths, embedded credentials and URL fragments to prevent accidental routing.
+    """
+    value = (raw or 'https://api.telegram.org').strip().rstrip('/')
+    parsed = urlparse(value)
+    if (parsed.scheme != 'https' or not parsed.hostname or parsed.username is not None
+            or parsed.password is not None or parsed.path or parsed.query or parsed.fragment):
+        raise RuntimeError(
+            'TELEGRAM_API_BASE_URL должен быть HTTPS-адресом без /bot, пути, логина и параметров.'
+        )
+    return value
+
+
 @dataclass(frozen=True)
 class Settings:
     site_url: str
@@ -77,6 +93,10 @@ class Settings:
     # Telegram-only polling runtime. Manager ID is optional for the FAQ bot.
     telegram_bot_token: str | None = None
     telegram_manager_user_id: int = 0
+    # Optional HTTPS reverse proxy/Cloudflare Worker for Bot API requests.
+    # Set only to a service you trust with the Telegram bot token and messages.
+    telegram_api_base_url: str = "https://api.telegram.org"
+    telegram_relay_key: str | None = None
 
     # Conversation quality / admin features.
     context_ttl_minutes: int = 15
@@ -140,6 +160,10 @@ def load_settings() -> Settings:
         kb_max_age_hours=max(1.0, float(os.getenv("KB_MAX_AGE_HOURS", "24"))),
         telegram_bot_token=token,
         telegram_manager_user_id=manager_id,
+        telegram_api_base_url=_telegram_api_base_url(
+            os.getenv('TELEGRAM_API_BASE_URL', 'https://api.telegram.org')
+        ),
+        telegram_relay_key=os.getenv('TELEGRAM_RELAY_KEY', '').strip() or None,
         context_ttl_minutes=max(1, min(int(os.getenv("CONTEXT_TTL_MINUTES", "15")), 120)),
         newsletters_enabled=_bool_env("NEWSLETTERS_ENABLED", True),
         bookings_enabled=_bool_env("BOOKINGS_ENABLED", False),

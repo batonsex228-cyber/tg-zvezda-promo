@@ -43,6 +43,9 @@ jobs:
       - name: Telegram semantic adapter test
         run: python scripts/telegram_semantic_flow_test.py
 
+      - name: HTTPS Cloudflare Telegram relay regression test
+        run: python scripts/telegram_cloudflare_proxy_test.py
+
       - name: Google Apps Script compatibility self-test
         run: node google_apps_script/self_test.js
 
@@ -75,11 +78,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:v1.0.4
+            ${{ env.IMAGE }}:v1.0.5
             ${{ env.IMAGE }}:sha-${{ github.sha }}
           build-args: |
             SOURCE_REPOSITORY=https://github.com/${{ github.repository }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.title=Zvezdochka Telegram Bot
-            org.opencontainers.image.version=1.0.4
+            org.opencontainers.image.version=1.0.5

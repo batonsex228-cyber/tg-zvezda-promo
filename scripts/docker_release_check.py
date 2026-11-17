@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 required = [
     'Dockerfile', 'compose.yaml', '.dockerignore', '.gitignore',
     '.github/workflows/publish-ghcr.yml', '.env.example',
-    'app/main.py', 'app/telegram_adapter.py', 'app/semantic_knowledge.py',
+    'app/main.py', 'app/telegram_adapter.py', 'app/semantic_knowledge.py', 'scripts/telegram_cloudflare_proxy_test.py',
     'data/semantic_topics.json', 'data/seed_faq.json', 'assets/bot_welcome.png'
 ]
 for f in required:
@@ -28,8 +28,11 @@ compose = (ROOT / 'compose.yaml').read_text(encoding='utf-8')
 assert 'TelegramAdapter' in source
 assert 'python", "-m", "app.main' in dockerfile
 assert '/app/runtime' in compose
-assert 'TELEGRAM_BOT_TOKEN' in (ROOT / '.env.example').read_text(encoding='utf-8')
-assert re.search(r'VERSION\s*=\s*[\'\"]1\.0\.4(?:-tg)?[\'\"]', (ROOT / 'app/version.py').read_text(encoding='utf-8'))
+env_example = (ROOT / '.env.example').read_text(encoding='utf-8')
+assert 'TELEGRAM_BOT_TOKEN' in env_example
+assert 'TELEGRAM_API_BASE_URL=https://telegram-api-proxy.aleksejnazarov93583.workers.dev' in env_example
+assert 'TELEGRAM_RELAY_KEY=' in env_example
+assert re.search(r'VERSION\s*=\s*[\'\"]1\.0\.5(?:-tg)?[\'\"]', (ROOT / 'app/version.py').read_text(encoding='utf-8'))
 for mod in ['app.main', 'app.telegram_adapter', 'app.semantic_knowledge']:
     importlib.import_module(mod)
 print('DOCKER RELEASE SOURCE CHECK: PASS')

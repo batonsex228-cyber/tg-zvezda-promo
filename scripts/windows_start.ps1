@@ -1,11 +1,11 @@
-# ZVEZDOCHKA Telegram v1.0.4 - self-contained Windows launcher.
+# ZVEZDOCHKA Telegram v1.0.5 - self-contained Windows launcher.
 # Windows PowerShell 5.1 / PowerShell 7; no system Python, py launcher or PATH required.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $root
 
 Write-Host '============================================================'
-Write-Host ' DZL ZVEZDOCHKA - TELEGRAM WINDOWS ONE CLICK v1.0.4'
+Write-Host ' DZL ZVEZDOCHKA - TELEGRAM WINDOWS ONE CLICK v1.0.5'
 Write-Host '============================================================'
 Write-Host '[INFO] Isolated Python 3.12 setup. Windows PATH is not required.'
 

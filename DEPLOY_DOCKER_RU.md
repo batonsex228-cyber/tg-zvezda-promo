@@ -1,6 +1,6 @@
 # ДЗЛ «Звёздочка»: GitHub -> GHCR -> Docker на сервере
 
-**Релиз:** Telegram v1.0.4 (Semantic KB), Docker/GHCR пакет 1.0.4-docker1. VK-проект не заменяется.
+**Релиз:** Telegram v1.0.5 (Semantic KB + Cloudflare Bot API). VK-проект не заменяется.
 
 Этот документ описывает ПУБЛИКАЦИЮ через GitHub Container Registry (`ghcr.io`), а не Docker Hub. Образ собирается автоматически через GitHub Actions после push в `main` и успешных тестов.
 
@@ -9,31 +9,28 @@
 - `Dockerfile`: Linux Python 3.12, установка зависимостей, запуск `python -m app.main`, процесс без root.
 - `.dockerignore`: не отправлять в сборку секреты и рабочую базу.
 - `compose.yaml`: серверный запуск из готового GHCR-образа; `restart: unless-stopped`; постоянный volume для SQLite и знаний.
-- `.github/workflows/publish-ghcr.yml`: 8 проверок (6 групп Telegram-тестов, Google Apps Script и Docker release check), затем сборка и публикация образа `linux/amd64` и `linux/arm64`.
+- `.github/workflows/publish-ghcr.yml`: 9 проверок (7 групп Telegram-тестов, Google Apps Script и Docker release check), затем сборка и публикация образа `linux/amd64` и `linux/arm64`.
 - `.env.example`: пример настроек; **не является секретным**; реальные значения заполняются только на сервере в `.env`.
 - `scripts/docker_release_check.py`: офлайн-проверка состава релиза.
 
 Важное ограничение: без Docker Engine нельзя окончательно подтвердить реальный `docker build` и подключение к Telegram. Зелёная GitHub Actions и серверный тест обязательны до того, как считать развёртывание рабочим.
 
-## 1. Создайте НОВЫЙ репозиторий GitHub
+## 1. Используйте существующий Telegram-репозиторий
 
-Не заливайте эту сборку поверх существующего VK-репозитория `zvezdochka-bot-prod`.
+Рабочий репозиторий: `https://github.com/batonsex228-cyber/tg-zvezda-promo`.
 
-1. В GitHub нажмите **New repository**.
-2. Название: `zvezdochka-telegram-bot`.
-3. Для самой простой передачи другу можно выбрать **Public**, но код будет общедоступен. Все секреты должны быть только в `.env` сервера. Если выбираете **Private**, для доступа к коду и образу потребуется выдать права отдельно.
-4. Поставьте **Add a README file**, создайте репозиторий.
-5. Откройте **Code -> Codespaces -> Create codespace on main**.
+**Не создавайте второй репозиторий и не обновляйте VK-проект `zvezdochka-bot-prod`.**
+Откройте Codespaces этого Telegram-репозитория или его локальную копию. Если в репозитории есть свои изменения после v1.0.4, предварительно сохраните их и сверьте с PATCH.
 
 ## 2. Загрузите подготовленный ZIP в Codespaces
 
-Перетащите `ZVEZDOCHKA_TELEGRAM_DOCKER_GITHUB_v1_0_4_READY.zip` в корень проекта слева в VS Code. Откройте терминал Codespaces и выполните:
+Рекомендуется PATCH `ZVEZDOCHKA_TELEGRAM_DOCKER_v1_0_5_CLOUDFLARE_PATCH_FROM_v1_0_4.zip` поверх существующей v1.0.4. Перетащите его в корень проекта слева в VS Code. Откройте терминал Codespaces и выполните:
 
 ```bash
 pwd
 ls *.zip
-unzip -o ZVEZDOCHKA_TELEGRAM_DOCKER_GITHUB_v1_0_4_READY.zip -d .
-rm ZVEZDOCHKA_TELEGRAM_DOCKER_GITHUB_v1_0_4_READY.zip
+unzip -o ZVEZDOCHKA_TELEGRAM_DOCKER_v1_0_5_CLOUDFLARE_PATCH_FROM_v1_0_4.zip -d .
+rm ZVEZDOCHKA_TELEGRAM_DOCKER_v1_0_5_CLOUDFLARE_PATCH_FROM_v1_0_4.zip
 ls -la Dockerfile compose.yaml .dockerignore .env.example .github/workflows
 ```
 
@@ -49,6 +46,7 @@ python scripts/telegram_social_reply_test.py
 python scripts/semantic_regression_test.py
 python scripts/context_20_test.py
 python scripts/telegram_semantic_flow_test.py
+python scripts/telegram_cloudflare_proxy_test.py
 python scripts/docker_release_check.py
 node google_apps_script/self_test.js
 ```
@@ -68,7 +66,7 @@ git status --short
 ```bash
 git add -A
 git diff --cached --name-only
-git commit -m "Telegram v1.0.4 Docker GHCR release"
+git commit -m "Telegram v1.0.5 Cloudflare Bot API relay"
 git push origin main
 ```
 
@@ -82,27 +80,27 @@ git push origin main
 4. При успехе появится образ:
 
 ```text
-ghcr.io/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot:latest
+ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest
 ```
 
-Также будут теги `:v1.0.4` и `:sha-<FULL_COMMIT_SHA>`. Точный адрес зависит от созданного Вами репозитория; реальную ссылку можно посмотреть в Packages.
+Также будут теги `:v1.0.5` и `:sha-<FULL_COMMIT_SHA>`. Точный адрес зависит от созданного Вами репозитория; реальную ссылку можно посмотреть в Packages.
 
 Если workflow не стартовал, проверьте, разрешены ли Actions для репозитория. Если нет прав на публикацию, проверьте в Settings -> Actions -> General права `GITHUB_TOKEN`/разрешения workflow и настройки пакета; workflow явно запрашивает `packages: write`.
 
 ## 6. Откройте доступ к Docker-образу
 
-Зайдите в GitHub -> Ваш профиль -> **Packages** -> `zvezdochka-telegram-bot` -> **Package settings**. Укажите видимость **Public**, если хотите, чтобы друг мог скачивать образ без GitHub-токена. Новый GHCR-пакет может быть приватным, даже если репозиторий публичный. Для приватного пакета потребуются соответствующие права и авторизация Docker на сервере.
+Зайдите в GitHub -> Ваш профиль -> **Packages** -> `tg-zvezda-promo` -> **Package settings**. Укажите видимость **Public**, если хотите, чтобы друг мог скачивать образ без GitHub-токена. Новый GHCR-пакет может быть приватным, даже если репозиторий публичный. Для приватного пакета потребуются соответствующие права и авторизация Docker на сервере.
 
 ДРУГУ передаёте ссылку на репозиторий:
 
 ```text
-https://github.com/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot
+https://github.com/batonsex228-cyber/tg-zvezda-promo
 ```
 
 и адрес готового Docker-образа:
 
 ```text
-ghcr.io/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot:latest
+ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest
 ```
 
 Ни одна из этих ссылок ещё не существует, пока Вы не создадите репозиторий и не опубликуете образ.
@@ -114,7 +112,7 @@ ghcr.io/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot:latest
 На сервере:
 
 ```bash
-git clone https://github.com/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot.git
+git clone https://github.com/batonsex228-cyber/tg-zvezda-promo.git
 cd zvezdochka-telegram-bot
 cp .env.example .env
 nano .env
@@ -124,8 +122,10 @@ nano .env
 
 ```dotenv
 TELEGRAM_BOT_TOKEN=ВАШ_ТОКЕН_ОТ_BOTFATHER
-BOT_IMAGE=ghcr.io/<ВАШ_GITHUB_LOGIN>/zvezdochka-telegram-bot:latest
+BOT_IMAGE=ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest
 TELEGRAM_MANAGER_USER_ID=0
+TELEGRAM_API_BASE_URL=https://telegram-api-proxy.aleksejnazarov93583.workers.dev
+TELEGRAM_RELAY_KEY=
 ```
 
 Чтобы работали уведомления менеджера и заявки с персональными данными, вместо `0` укажите числовой Telegram ID менеджера. Менеджер сначала должен открыть этого бота и написать `/start`; свой ID он узнает командой `/id`.
@@ -194,3 +194,29 @@ docker compose logs --tail=150
 - `manifest unknown` / `denied` -> нет опубликованного образа, неправильный `BOT_IMAGE` либо пакет приватный.
 - `permission denied` на SQLite -> проверьте права постоянного volume; контейнер работает от UID 10001.
 - Нет заявок менеджеру -> настройте `TELEGRAM_MANAGER_USER_ID`, выполните `/start` с менеджерского аккаунта и перезапустите.
+
+
+## Обновление v1.0.5: Cloudflare Worker для Telegram API
+
+Рабочий репозиторий: `https://github.com/batonsex228-cyber/tg-zvezda-promo`.
+Образ после успешной публикации: `ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest`.
+
+В **серверном** `.env` (не коммитить!) добавьте:
+
+```dotenv
+TELEGRAM_API_BASE_URL=https://telegram-api-proxy.aleksejnazarov93583.workers.dev
+TELEGRAM_RELAY_KEY=
+```
+
+Если Cloudflare Worker защищён секретом `RELAY_KEY`, укажите то же значение в `TELEGRAM_RELAY_KEY` (оно пойдёт заголовком `X-Relay-Key`). Если Worker другой и не поддерживает этот заголовок, оставьте поле пустым. Секрет нельзя вставлять в `.env.example`, код или логи.
+
+1. Загрузите обновлённый код в `main`. Проверьте зелёный GitHub Actions (`Telegram bot - tests and GHCR Docker image`).
+2. На сервере Миши: `cd tg-zvezda-promo && git pull --ff-only`.
+3. На сервере: `nano .env` и добавьте URL выше. Проверьте `BOT_IMAGE=ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest` и реальный `TELEGRAM_BOT_TOKEN`.
+4. Остановите старый экземпляр с этим токеном на Windows или в другом контейнере.
+5. Обновите и запустите: `docker compose pull && docker compose up -d`.
+6. Проверьте: `docker compose ps && docker compose logs --tail=100 -f`.
+
+Загрузка одного `.env.example` на GitHub **не изменяет серверные переменные**. В логах должен быть `Telegram transport: Cloudflare/HTTPS relay` и затем `Telegram API: OK`. Если видите `401/403`, проверьте настройки Worker и секрет. Если `Non-JSON` / 404, возможно, Worker не пересылает `/bot<TOKEN>/<method>`; если тайм-ауты, проверьте долгие запросы `getUpdates`. Не публикуйте рабочий Telegram-токен в адресной строке браузера.
+
+**Проверка безопасности:** Worker получает токен бота и содержимое запросов, а в сообщениях лагеря могут находиться данные родителей и детей. Прежде чем включать заявки, согласуйте с администрацией применимость 152-ФЗ, трансграничную передачу, логи и политику хранения. Точный Worker код в этом релизе не представлен и потому не проверен.

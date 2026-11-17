@@ -1,0 +1,19 @@
+DZL Звёздочка Telegram v1.0.5 - Cloudflare Workers / GHCR
+
+1. Вариант PATCH: распакуйте поверх кода v1.0.4 в Codespaces, НЕ копируйте секреты в GitHub.
+2. python -m pip install -r requirements.txt
+3. python scripts/telegram_cloudflare_proxy_test.py
+4. python scripts/docker_release_check.py
+5. git status --short, git add -A, проверьте git diff --cached --name-only
+6. git commit -m "Telegram v1.0.5 Cloudflare Worker relay" && git push origin main
+7. Дождитесь зелёного GitHub Actions и публикации ghcr.io/batonsex228-cyber/tg-zvezda-promo:latest
+8. На сервере Миши добавьте в .env:
+   TELEGRAM_API_BASE_URL=https://telegram-api-proxy.aleksejnazarov93583.workers.dev
+   TELEGRAM_RELAY_KEY=             (при необходимости укажите секрет Worker)
+9. Остановите прежний экземпляр Telegram-бота с тем же токеном.
+10. cd tg-zvezda-promo && git pull --ff-only && docker compose pull && docker compose up -d
+11. docker compose logs --tail=100 -f, смотрите Telegram API: OK
+
+Скопированный фрагмент для node-telegram-bot-api не применяется к Python. Вместо него включена
+настраиваемая Python httpx интеграция. Google Apps Script и данные лагеря не менялись.
+Внешний Worker и настоящий Docker-хост не проверялись из среды сборки.

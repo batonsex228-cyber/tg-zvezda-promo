@@ -87,3 +87,19 @@
 3. Убедитесь, что рядом с BAT лежит обновлённая папка `data/semantic_topics.json` и `app/semantic_knowledge.py`.
 4. Нажмите `TEST_LOCAL.bat`. После успешной проверки запустите `START_TELEGRAM.bat`.
 5. Данные и бот-токен в `.env` сохраняются.
+
+
+## Версия 1.0.5 - Telegram API через Cloudflare Worker
+
+В текущем репозитории Telegram-вызовы идут через `httpx`, а не через библиотеку Node.js `node-telegram-bot-api`. Поэтому аналог параметра `baseApiUrl` задаётся в `.env`:
+
+```dotenv
+TELEGRAM_API_BASE_URL=https://telegram-api-proxy.aleksejnazarov93583.workers.dev
+TELEGRAM_RELAY_KEY=
+```
+
+`TELEGRAM_RELAY_KEY` нужен только если Worker настроен проверять заголовок `X-Relay-Key`. Сам токен Telegram остаётся только в `TELEGRAM_BOT_TOKEN`. Не добавляйте `/bot123...` к `TELEGRAM_API_BASE_URL` и не отправляйте `.env` в GitHub. Чтобы использовать прямой доступ, поменяйте URL на `https://api.telegram.org`.
+
+Адрес Worker - это не SOCKS5/HTTP-прокси. Обработчик должен корректно проксировать `/bot<TOKEN>/<method>`, в том числе POST `getUpdates` с `timeout=25` (long polling), и передавать JSON-ответы Telegram. Секрет Worker (если используется) должен совпадать с локальным значением. Проверьте это на сервере с работающим токеном. Локальная проверка `python scripts/telegram_cloudflare_proxy_test.py` не отправляет сетевых запросов.
+
+При обновлении Docker-контейнера существующий `.env` **не изменится автоматически**. Добавьте две строки в серверный `.env` вручную и затем выполните `docker compose pull && docker compose up -d` после успешной GitHub Actions сборки. Не запускайте одновременно старую Windows-копию бота с тем же токеном.

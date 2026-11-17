@@ -100,6 +100,10 @@ async def run() -> int:
     knowledge_loop_on = bool(settings.knowledge_loop_enabled and settings.telegram_manager_user_id)
     print(f"      Knowledge Loop: {'ON' if knowledge_loop_on else 'OFF'}")
 
+    # Show only the trusted API origin, never a token-bearing URL or secret.
+    print('      Telegram transport: ' +
+          ('Cloudflare/HTTPS relay' if settings.telegram_api_base_url != 'https://api.telegram.org'
+           else 'official direct API'))
     print("[2/4] Checking Telegram API...")
     await tg.validate()
     print(f"      Telegram API: OK" + (f" — @{tg.bot_name}" if tg.bot_name else ""))
